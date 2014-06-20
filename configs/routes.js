@@ -2,10 +2,22 @@ var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'htt
 var linkedin;
 
 module.exports = function(app) {
-    // Index page
+
+    // Unauthenticated Index page
     app.get('/', function(req, res) {
-        res.render('index.ejs', {
+        res.render('index_unauthenticated.ejs', {
             title: 'LinkedIn Tinder'
+        });
+    });
+
+    // Authenticated Index page
+    app.get('/index', function(req, res) {
+        // Query for more atributes here to load in database
+        linkedin.people.me(['id', 'first-name', 'last-name'], function(err, $in) {
+            res.render('index.ejs', {
+                title: 'LinkedIn Tinder',
+                username: $in['firstName']
+            });
         });
     });
 
@@ -16,12 +28,7 @@ module.exports = function(app) {
                 profile: $in
             })
         });
-
-        // linkedin.people.id('160598580', function(err, $in) {
-        //     // Loads the profile by id.
-        //     console.log($in);
-        // });
-    })
+    });
 
     app.get('/oauth/linkedin', function(req, res) {
         Linkedin.auth.authorize(res, ['r_basicprofile', 'r_fullprofile', 'r_emailaddress', 'r_network', 'r_contactinfo', 'rw_nus', 'rw_groups']);
@@ -32,7 +39,7 @@ module.exports = function(app) {
             if (err) return console.error(err);
             results = JSON.parse(results);
             linkedin = Linkedin.init(results["access_token"]);
-            return res.redirect('/');
+            return res.redirect('/index');
         });
     });
 }
