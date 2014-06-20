@@ -2,7 +2,10 @@ var express = require('express'),
     http = require('http'),
     fs = require('fs'),
     path = require('path'),
-    winston = require('winston');
+    winston = require('winston'),
+    flash = require('connect-flash'),
+    passport = require('passport'),
+    mongoose = require('mongoose');
 
 if (!process.env.NODE_ENV) {
     process.env.NODE_ENV = 'local';
@@ -28,6 +31,26 @@ nconf.set('approot', __dirname); // set approot root
 var app = express();
 
 app.use(express.static(__dirname + "/public"));
+app.use(express.cookieParser());
+app.use(express.bodyParser()); // get information from html forms
+app.use(express.session({
+    secret: '1234567890QWERTY'
+}));
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
+require('./configs/passport')(passport); // pass passport for configuration
+
+// Database stuff
+// var configDB = require('./configs/database.js');
+// mongoose.connect(configDB.url); // connect to our database
+var MongoClient = require('mongodb').MongoClient;
+MongoClient.connect("mongodb://localhost:27017/test", function(err, db) {
+    if (!err) {
+        console.log("MongoDB is connected");
+    }
+});
 
 // load express settings
 require('./configs/express')(app, nconf, express, logger);
