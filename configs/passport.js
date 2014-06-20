@@ -1,34 +1,5 @@
 // config/passport.js
 
-var MongoClient = require('mongodb').MongoClient;
-
-
-
-
-// retrive with:
-// Connect to the db
-MongoClient.connect("mongodb://localhost:27017/exampleDb", function(err, db) {
-    if (err) {
-        return console.dir(err);
-    }
-
-    db.collection('test', function(err, collection) {});
-
-    db.collection('test', {
-        w: 1
-    }, function(err, collection) {});
-
-    db.createCollection('test', function(err, collection) {});
-
-    db.createCollection('test', {
-        w: 1
-    }, function(err, collection) {});
-
-});
-
-
-
-
 // load all the things we need
 var LocalStrategy = require('passport-local').Strategy;
 
@@ -76,30 +47,31 @@ module.exports = function(passport) {
 
                 // find a user whose email is the same as the forms email
                 // we are checking to see if the user trying to login already exists
+
+                // Is user connected to local mongoose?
                 User.findOne({
-                    'local.email': email
+                    'linkedin_email': email
                 }, function(err, user) {
                     // if there are any errors, return the error
                     if (err)
                         return done(err);
-
                     // check to see if theres already a user with that email
                     if (user) {
                         return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
                     } else {
-
                         // if there is no user with that email
                         // create the user
                         var newUser = new User();
-
                         // set the user's local credentials
-                        newUser.local.email = email;
-                        newUser.local.password = newUser.generateHash(password);
+                        newUser.linkedin_email = email;
+                        newUser.local_password = newUser.generateHash(password);
 
                         // save the user
                         newUser.save(function(err) {
-                            if (err)
+                            if (err) {
+                                console.log('user was not saved');
                                 throw err;
+                            }
                             return done(null, newUser);
                         });
                     }

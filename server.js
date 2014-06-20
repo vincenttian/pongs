@@ -43,8 +43,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 require('./configs/passport')(passport); // pass passport for configuration
 
 // Database stuff
-// var configDB = require('./configs/database.js');
-// mongoose.connect(configDB.url); // connect to our database
+mongoose.connect("mongodb://localhost:27017/test");
 var MongoClient = require('mongodb').MongoClient;
 MongoClient.connect("mongodb://localhost:27017/test", function(err, db) {
     if (!err) {

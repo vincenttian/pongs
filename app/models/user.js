@@ -5,16 +5,12 @@ var mongoose = require('mongoose'),
 
 // define the schema for our user model
 var userSchema = mongoose.Schema({
-    local: {
-        email: String,
-        password: String,
-    },
-    linkedin: {
-        id: String,
-        token: String,
-        email: String,
-        name: String
-    }
+    linkedin_id: String,
+    linkedin_token: String,
+    linkedin_email: String,
+    linkedin_name: String,
+    local_id: String,
+    local_password: String
 });
 
 // methods ======================

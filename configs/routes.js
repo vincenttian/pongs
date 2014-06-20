@@ -1,6 +1,8 @@
 var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://localhost:3000/oauth/linkedin/callback');
 var linkedin;
 
+// OLD AUTHENTICATION
+
 // module.exports = function(app) {
 
 //     // Unauthenticated Index page
@@ -66,7 +68,6 @@ module.exports = function(app, passport) {
     // =====================================
     // show the login form
     app.get('/login', function(req, res) {
-
         // render the page and pass in any flash data if it exists
         res.render('login.ejs', {
             message: req.flash('loginMessage')

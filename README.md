@@ -15,3 +15,7 @@ $ sudo mongod
 #####Local Mongo shell
 
 $ mongo
+
+	* use <database>
+	* show dbs
+	* db.<collection>.find()
