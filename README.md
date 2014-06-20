@@ -16,6 +16,22 @@ $ sudo mongod
 
 $ mongo
 
+
+	Use a database
+
 	* use <database>
+
+
+	Show all db's
+
 	* show dbs
-	* db.<collection>.find()
+
+
+	Show all collections
+
+	* show collections
+
+
+	Query all users
+
+	* db.users.find()
