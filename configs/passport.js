@@ -60,6 +60,7 @@ module.exports = function(passport) {
                         return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
                     } else {
                         // if there is no user with that email
+
                         // create the user
                         var newUser = new User();
                         // set the user's local credentials
@@ -99,7 +100,7 @@ module.exports = function(passport) {
             // find a user whose email is the same as the forms email
             // we are checking to see if the user trying to login already exists
             User.findOne({
-                'local.email': email
+                'linkedin_email': email
             }, function(err, user) {
                 // if there are any errors, return the error before anything else
                 if (err)
@@ -110,6 +111,7 @@ module.exports = function(passport) {
                     return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
 
                 // if the user is found but the password is wrong
+
                 if (!user.validPassword(password))
                     return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
 
