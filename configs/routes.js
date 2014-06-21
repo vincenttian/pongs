@@ -24,6 +24,12 @@ module.exports = function(app, passport) {
                 }, function(err, user) {
                     if (err) // if there are any errors, return the error
                         return done(err);
+                    if (user == null || user == undefined) {
+                        console.log('local email and linkedin email do not match up');
+                        res.render('profile.ejs', {
+                            user: req.user // get the user out of session and pass to template
+                        });
+                    }
                     user.linkedin_id = $in['id'];
                     user.linkedin_name = $in['firstName'];
                     user.linkedin_token = results["access_token"];
