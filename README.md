@@ -35,3 +35,14 @@ $ mongo
 	Query all users
 
 	* db.users.find()
+
+
+	Find Specific User
+
+	> db.users.findOne({linkedin_email:'jordeenchang@gmail.com'})
+
+
+	Drop Specific collection
+
+	> db.users.drop()
+

@@ -10,31 +10,36 @@
 	</style>
 </head>
 <body>
-<div class="container">
-
-	<div class="page-header text-center">
-		<h1><span class="fa fa-anchor"></span> Profile Page</h1>
-		<a href="/logout" class="btn btn-default btn-sm">Logout</a>
-	</div>
-
-	<div class="row">
-
-		<!-- LOCAL INFORMATION -->
-		<div class="col-sm-6">
-			<div class="well">
-				<h3><span class="fa fa-user"></span> Local</h3>
-			    <a href="/data">Data</a>
-					<p>
-						<strong>id</strong>: <%= user._id %><br>
-						<strong>email</strong>: <%= user.email %><br>
-						<strong>password</strong>: <%= user.password %>
-					</p>
-
+	<div class="container">
+		<div class="page-header text-center">
+			<h1><span class="fa fa-anchor"></span> Profile Page</h1>
+			<a href="/logout" class="btn btn-default btn-sm">Logout</a>
+		</div>
+		<div class="row">
+			<!-- LOCAL INFORMATION -->
+			<div class="col-sm-6">
+				<div class="well">
+					<h3><span class="fa fa-user"></span> Local</h3>
+				    <a href="/oauth/linkedin">Connect with data from LinkedIn</a>
+						<p>
+							<strong>name</strong>: <%= user.linkedin_name %><br>
+							<strong>id</strong>: <%= user._id %><br>
+							<strong>email</strong>: <%= user.linkedin_email %><br>
+							<strong>password</strong>: <%= user.local_password %><br>
+							<strong>linkedin id</strong>: <%= user.linkedin_id %><br>
+							<strong>token</strong>: <%= user.linkedin_token %><br>
+							<strong>location</strong>: <%= user.location %><br>
+							<strong>groups</strong>: <%= user.groups %><br>
+							<strong>interests</strong>: <%= user.interests %><br>
+							<strong>skills</strong>: <%= user.skills %><br>
+							<strong>courses</strong>: <%= user.courses %><br>
+							<strong>follow_companies</strong>: <%= user.follow_companies %><br>
+							<strong>follow_people</strong>: <%= user.follow_people %><br>
+							<strong>connections</strong>: <%= user.connections %><br>
+						</p>
+				</div>
 			</div>
 		</div>
-
 	</div>
-
-</div>
 </body>
 </html>

@@ -10,7 +10,15 @@ var userSchema = mongoose.Schema({
     linkedin_email: String,
     linkedin_name: String,
     local_id: String,
-    local_password: String
+    local_password: String,
+    connections: String,
+    courses: String,
+    follow_companies: String,
+    follow_people: String,
+    groups: String,
+    interests: String,
+    skills: String,
+    location: String
 });
 
 // methods ======================
