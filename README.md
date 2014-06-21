@@ -2,8 +2,11 @@
 
 ###Vincent Tian
 
-Node.js Authentication
+Node.js Authentication:
 http://scotch.io/tutorials/javascript/easy-node-authentication-setup-and-local
+
+Node.js LinkedIn API:
+https://github.com/Kuew/node-linkedin
 
 ###MongoDB
 
@@ -19,19 +22,19 @@ $ mongo
 
 	Use a database
 
-	* use <database>
+	> use <database>
 
 
 	Show all db's
 
-	* show dbs
+	> show dbs
 
 
 	Show all collections
 
-	* show collections
+	> show collections
 
 
 	Query all users
 
-	* db.users.find()
+	> db.users.find()
