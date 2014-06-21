@@ -15,7 +15,7 @@ module.exports = function(app, passport) {
             if (err) return console.error(err);
             results = JSON.parse(results);
             linkedin = Linkedin.init(results["access_token"]);
-            linkedin.people.me(['id', 'first-name', 'last-name', 'connections', 'emailAddress', 'courses', 'following', 'groupMemberships', 'interests', 'location', 'skills'], function(err, $in) {
+            linkedin.people.me(['id', 'first-name', 'last-name', 'connections', 'emailAddress', 'courses', 'following', 'groupMemberships', 'interests', 'location', 'skills', 'positions'], function(err, $in) {
                 // linkedin.people.me(function(err, $in) {
                 if (err) return err;
                 // add additional data to user model
@@ -38,7 +38,18 @@ module.exports = function(app, passport) {
                         follow_people = [],
                         groups = [],
                         skills = [],
-                        connections = [];
+                        connections = [],
+                        positions = [];
+                    for (var i = 0; i < $in['positions']['_total']; i++) {
+                        var p = {};
+                        p['company'] = $in['positions']['values'][i]['company']['name'];
+                        p['title'] = $in['positions']['values'][i]['title'];
+                        p['is_current'] = $in['positions']['values'][i]['isCurrent'];
+                        p['industry'] = $in['positions']['values'][i]['company']['industry'];
+                        positions.push(p)
+                    }
+                    user.positions = JSON.stringify(positions);
+
                     for (var i = 0; i < $in['courses']['_total']; i++) {
                         courses.push($in['courses']['values'][i]['name'])
                     }

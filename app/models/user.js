@@ -18,7 +18,8 @@ var userSchema = mongoose.Schema({
     groups: String,
     interests: String,
     skills: String,
-    location: String
+    location: String,
+    positions: String
 });
 
 // methods ======================
