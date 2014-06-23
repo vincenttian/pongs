@@ -1,5 +1,6 @@
 var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://localhost:3000/oauth/linkedin/callback');
 var linkedin;
+var jsnx = require('../JSNetworkX');
 
 var User = require('../app/models/user');
 

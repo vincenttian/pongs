@@ -8,6 +8,9 @@ http://scotch.io/tutorials/javascript/easy-node-authentication-setup-and-local
 Node.js LinkedIn API:
 https://github.com/Kuew/node-linkedin
 
+Javascript Graph Library:
+http://felix-kling.de/JSNetworkX/getting_started.html
+
 ###MongoDB
 
 

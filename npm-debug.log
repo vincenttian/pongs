@@ -1,0 +1,57 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'https://github.com/fkling/JSNetworkX.git' ]
+2 info using npm@1.4.13
+3 info using node@v0.10.28
+4 verbose node symlink /usr/local/bin/node
+5 warn package.json testapp@0.0.1-1 No repository field.
+6 verbose readDependencies using package.json deps
+7 verbose cache add [ 'https://github.com/fkling/JSNetworkX.git', null ]
+8 verbose cache add name=undefined spec="https://github.com/fkling/JSNetworkX.git" args=["https://github.com/fkling/JSNetworkX.git",null]
+9 verbose parsed url { protocol: 'https:',
+9 verbose parsed url   slashes: true,
+9 verbose parsed url   auth: null,
+9 verbose parsed url   host: 'github.com',
+9 verbose parsed url   port: null,
+9 verbose parsed url   hostname: 'github.com',
+9 verbose parsed url   hash: null,
+9 verbose parsed url   search: null,
+9 verbose parsed url   query: null,
+9 verbose parsed url   pathname: '/fkling/JSNetworkX.git',
+9 verbose parsed url   path: '/fkling/JSNetworkX.git',
+9 verbose parsed url   href: 'https://github.com/fkling/JSNetworkX.git' }
+10 silly lockFile 980f80c1-github-com-fkling-JSNetworkX-git https://github.com/fkling/JSNetworkX.git
+11 verbose lock https://github.com/fkling/JSNetworkX.git /Users/vtian/.npm/980f80c1-github-com-fkling-JSNetworkX-git.lock
+12 verbose addRemoteTarball [ 'https://github.com/fkling/JSNetworkX.git', null ]
+13 info retry fetch attempt 1 at 10:14:59
+14 verbose fetch to= /Users/vtian/tmp/npm-21968-4kqmIxv7/github.com/fkling/JSNetworkX.git
+15 http GET https://github.com/fkling/JSNetworkX.git
+16 http 200 https://github.com/fkling/JSNetworkX.git
+17 verbose tar unpack /Users/vtian/tmp/npm-21968-4kqmIxv7/github.com/fkling/JSNetworkX.git
+18 silly lockFile 45de4ddc-com-fkling-JSNetworkX-git-unpack tar:///Users/vtian/tmp/npm-21968-4kqmIxv7/github.com/fkling/JSNetworkX.git-unpack
+19 verbose lock tar:///Users/vtian/tmp/npm-21968-4kqmIxv7/github.com/fkling/JSNetworkX.git-unpack /Users/vtian/.npm/45de4ddc-com-fkling-JSNetworkX-git-unpack.lock
+20 silly lockFile 99b1f0bc-github-com-fkling-JSNetworkX-git tar:///Users/vtian/tmp/npm-21968-4kqmIxv7/github.com/fkling/JSNetworkX.git
+21 verbose lock tar:///Users/vtian/tmp/npm-21968-4kqmIxv7/github.com/fkling/JSNetworkX.git /Users/vtian/.npm/99b1f0bc-github-com-fkling-JSNetworkX-git.lock
+22 silly gunzTarPerm modes [ '755', '644' ]
+23 error not a package /Users/vtian/tmp/npm-21968-4kqmIxv7/github.com/fkling/JSNetworkX.git
+24 silly lockFile 45de4ddc-com-fkling-JSNetworkX-git-unpack tar:///Users/vtian/tmp/npm-21968-4kqmIxv7/github.com/fkling/JSNetworkX.git-unpack
+25 silly lockFile 45de4ddc-com-fkling-JSNetworkX-git-unpack tar:///Users/vtian/tmp/npm-21968-4kqmIxv7/github.com/fkling/JSNetworkX.git-unpack
+26 silly lockFile 99b1f0bc-github-com-fkling-JSNetworkX-git tar:///Users/vtian/tmp/npm-21968-4kqmIxv7/github.com/fkling/JSNetworkX.git
+27 silly lockFile 99b1f0bc-github-com-fkling-JSNetworkX-git tar:///Users/vtian/tmp/npm-21968-4kqmIxv7/github.com/fkling/JSNetworkX.git
+28 silly lockFile 980f80c1-github-com-fkling-JSNetworkX-git https://github.com/fkling/JSNetworkX.git
+29 silly lockFile 980f80c1-github-com-fkling-JSNetworkX-git https://github.com/fkling/JSNetworkX.git
+30 error Error: ENOENT, open '/Users/vtian/tmp/npm-21968-4kqmIxv7/github.com/fkling/JSNetworkX.git-unpack/package.json'
+31 error If you need help, you may report this *entire* log,
+31 error including the npm and node versions, at:
+31 error     <http://github.com/npm/npm/issues>
+32 error System Darwin 13.2.0
+33 error command "node" "/usr/local/bin/npm" "install" "https://github.com/fkling/JSNetworkX.git"
+34 error cwd /Users/vtian/Desktop/workspace/linked_node
+35 error node -v v0.10.28
+36 error npm -v 1.4.13
+37 error path /Users/vtian/tmp/npm-21968-4kqmIxv7/github.com/fkling/JSNetworkX.git-unpack/package.json
+38 error code ENOENT
+39 error errno 34
+40 verbose exit [ 34, true ]
