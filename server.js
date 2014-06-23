@@ -42,15 +42,6 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 require('./configs/passport')(passport); // pass passport for configuration
 
-// Database stuff
-mongoose.connect("mongodb://localhost:27017/test");
-var MongoClient = require('mongodb').MongoClient;
-MongoClient.connect("mongodb://localhost:27017/test", function(err, db) {
-    if (!err) {
-        console.log("MongoDB is connected");
-    }
-});
-
 // load express settings
 require('./configs/express')(app, nconf, express, logger);
 
@@ -61,3 +52,29 @@ require('./configs/routes')(app);
 http.createServer(app).listen(app.get('port'), function() {
     console.log('Express server listening on port ' + app.get('port'));
 });
+
+// DATABASE STUFF
+
+// Production
+var mongoUri = process.env.MONGOLAB_URI ||
+    process.env.MONGOHQ_URL ||
+    'mongodb://localhost/mydb';
+mongoose.connect(mongoUri);
+mongo.Db.connect(mongoUri, function(err, db) {
+    db.collection('mydocs', function(er, collection) {
+        collection.insert({
+            'mykey': 'myvalue'
+        }, {
+            safe: true
+        }, function(er, rs) {});
+    });
+});
+
+// Development
+// mongoose.connect("mongodb://localhost:27017/test");
+// var MongoClient = require('mongodb').MongoClient;
+// MongoClient.connect("mongodb://localhost:27017/test", function(err, db) {
+//     if (!err) {
+//         console.log("MongoDB is connected");
+//     }
+// });
