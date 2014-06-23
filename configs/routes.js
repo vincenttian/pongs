@@ -105,6 +105,34 @@ module.exports = function(app, passport) {
                         connect['industry'] = person['industry'];
                         connect['lastName'] = person['lastName'];
                         connections.push(connect);
+
+                        function addAllPersonDB(c) {
+                            allPeople.findOne({
+                                'linkedin_id': person['id']
+                            }, function(err, res) {
+                                if (err) // if there are any errors, return the error
+                                    return done(err);
+                                if (res == null || res == undefined) {
+                                    // person is not yet in database; add person
+                                    console.log(c);
+                                    var p = new allPeople({
+                                        linkedin_id: c['id'],
+                                        first_name: c['firstName'],
+                                        last_name: c['lastName'],
+                                        location: c['location'],
+                                        linkedin_url: c['linkedin_url'],
+                                        industry: c['industry']
+                                    });
+                                    p.save(function(err) {
+                                        if (err) return err;
+                                    });
+                                } else {
+                                    // do nothing
+                                    console.log('person: ' + res + ' is already in database');
+                                }
+                            });
+                        }
+                        addAllPersonDB(connect);
                     }
                     user.connections = JSON.stringify(connections);
                     user.save(function(err) {

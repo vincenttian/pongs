@@ -52,5 +52,20 @@ $ mongo
 
 	> db.users.drop()
 
+
+	Find All people in Bay Area
+
+	> db.allpeoples.find({location: "San Francisco Bay Area"})
+
+
+	Find All people in computer software industry
+
+	> db.allpeoples.find({industry: "Computer Software"})
+
+
+	Find All people in the Bay Area in the computer software industry
+
+	> db.allpeoples.find({industry: "Computer Software", location: "San Francisco Bay Area"})
+
 #####Production VS Development
 To switch between dev and prod, uncomment/comment the database and redirect url in server.js and configs/routes.js
