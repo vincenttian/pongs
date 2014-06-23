@@ -51,3 +51,6 @@ $ mongo
 	Drop Specific collection
 
 	> db.users.drop()
+
+#####Production VS Development
+To switch between dev and prod, uncomment/comment the database and redirect url in server.js and configs/routes.js

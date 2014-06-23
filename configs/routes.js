@@ -1,4 +1,7 @@
-var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://localhost:3000/oauth/linkedin/callback');
+// Dev Config
+// var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://localhost:3000/oauth/linkedin/callback');
+// Prod Config
+var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://tindermeetslinkedin.herokuapp.com/oauth/linkedin/callback');
 var linkedin;
 
 var User = require('../app/models/user');
