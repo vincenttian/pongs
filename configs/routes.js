@@ -132,6 +132,11 @@ module.exports = function(app, passport) {
         res.render('index.ejs'); // load the index.ejs file
     });
 
+    // LINKEDIN authentication page 
+    app.get('/linkedin', function(req, res) {
+        res.render('linkedin.ejs'); // load the index.ejs file
+    });
+
     // LOGIN: show the login form
     app.get('/login', function(req, res) {
         // render the page and pass in any flash data if it exists
@@ -156,7 +161,7 @@ module.exports = function(app, passport) {
     });
 
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect: '/profile', // redirect to the secure profile section
+        successRedirect: '/linkedin', // redirect to the secure profile section
         failureRedirect: '/signup', // redirect back to the signup page if there is an error
         failureFlash: true // allow flash messages
     }));
