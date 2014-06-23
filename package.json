@@ -9,6 +9,7 @@
         "ejs": "~0.8.4",
         "mongodb": "latest",
         "mongoose": "~3.8.1",
+        "node-linkedin": "~latest",
         "passport": "~0.1.17",
         "passport-local": "~0.1.6",
         "nconf": "~0.6.7",
