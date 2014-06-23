@@ -9,7 +9,7 @@ Node.js LinkedIn API:
 https://github.com/Kuew/node-linkedin
 
 Javascript Graph Library:
-http://felix-kling.de/JSNetworkX/getting_started.html
+https://github.com/fkling/JSNetworkX
 
 ###MongoDB
 

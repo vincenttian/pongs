@@ -1,9 +1,9 @@
 var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://localhost:3000/oauth/linkedin/callback');
 var linkedin;
-var jsnx = require('../JSNetworkX');
 
 var User = require('../app/models/user');
 
+var jsnx = require('../JSNetworkX');
 var G = new jsnx.Graph();
 
 module.exports = function(app, passport) {
@@ -105,13 +105,12 @@ module.exports = function(app, passport) {
                     user.save(function(err) {
                         if (err) return err;
                     });
-                    // Save to Graph; if a node is added again, the passed data will be merged
                     G.add_node(user.linkedin_id, user);
                     for (var i = 0; i < connections.length; i++) {
-                        // check if user is already in graph
-                        if (G.node.get(connections[i]['id']) != null) { // add edge to existing User
+                        try { // check if a given friend is already in the graph based on linkedin id
+                            var test = G.node.get(user.linkedin_id);
                             G.add_edge(user.linkedin_id, connections[i]['id']);
-                        } else { // add a new user
+                        } catch (err) { // if not found, catch error and add user 
                             G.add_node(connections[i]['id'], connections[i]);
                             G.add_edge(user.linkedin_id, connections[i]['id']);
                         }
