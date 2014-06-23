@@ -108,7 +108,7 @@ module.exports = function(app, passport) {
 
                         function addAllPersonDB(c) {
                             allPeople.findOne({
-                                'linkedin_id': person['id']
+                                'linkedin_id': c['id']
                             }, function(err, res) {
                                 if (err) // if there are any errors, return the error
                                     return done(err);
@@ -128,12 +128,40 @@ module.exports = function(app, passport) {
                                     });
                                 } else {
                                     // do nothing
-                                    console.log('person: ' + res + ' is already in database');
+                                    // console.log('person: ' + res + ' is already in database');
                                 }
                             });
                         }
                         addAllPersonDB(connect);
                     }
+
+                    // Adds user himself into allPersonDB
+                    allPeople.findOne({
+                        'linkedin_id': $in['id']
+                    }, function(err, res) {
+                        if (err) // if there are any errors, return the error
+                            return done(err);
+                        if (res == null || res == undefined) {
+                            // person is not yet in database; add person
+                            var p = new allPeople({
+                                linkedin_id: $in['id'],
+                                first_name: $in['firstName'],
+                                last_name: $in['lastName'],
+                                location: $in['location']['name'],
+                                linkedin_url: '',
+                                industry: ''
+                            }); // TODO: ^Add these in linkedin query
+                            console.log(p);
+                            p.save(function(err) {
+                                if (err) return err;
+                            });
+                        } else {
+                            // do nothing
+                            // console.log('person: ' + res + ' is already in database');
+                        }
+                    });
+
+
                     user.connections = JSON.stringify(connections);
                     user.save(function(err) {
                         if (err) return err;
