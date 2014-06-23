@@ -4,6 +4,8 @@ var jsnx = require('../JSNetworkX');
 
 var User = require('../app/models/user');
 
+var G = new jsnx.Graph();
+
 module.exports = function(app, passport) {
     var passport = require('passport');
 
@@ -31,6 +33,13 @@ module.exports = function(app, passport) {
                             user: req.user // get the user out of session and pass to template
                         });
                     }
+
+                    // Examine $in
+                    // res.json({
+                    //     info: $in
+                    // });
+                    // return;
+
                     user.linkedin_id = $in['id'];
                     user.linkedin_name = $in['firstName'];
                     user.linkedin_token = results["access_token"];
@@ -96,6 +105,17 @@ module.exports = function(app, passport) {
                     user.save(function(err) {
                         if (err) return err;
                     });
+                    // Save to Graph; if a node is added again, the passed data will be merged
+                    G.add_node(user.linkedin_id, user);
+                    for (var i = 0; i < connections.length; i++) {
+                        // check if user is already in graph
+                        if (G.node.get(connections[i]['id']) != null) { // add edge to existing User
+                            G.add_edge(user.linkedin_id, connections[i]['id']);
+                        } else { // add a new user
+                            G.add_node(connections[i]['id'], connections[i]);
+                            G.add_edge(user.linkedin_id, connections[i]['id']);
+                        }
+                    }
                     res.render('profile.ejs', {
                         user: user
                     });
