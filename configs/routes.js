@@ -115,8 +115,9 @@ module.exports = function(app, passport) {
                             G.add_edge(user.linkedin_id, connections[i]['id']);
                         }
                     }
-                    res.render('profile.ejs', {
-                        user: user
+                    res.render('profile_graph.ejs', {
+                        user: user,
+                        graph: JSON.stringify(G)
                     });
                 });
             });

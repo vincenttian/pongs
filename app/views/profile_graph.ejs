@@ -1,0 +1,64 @@
+<!-- views/profile.ejs -->
+<!doctype html>
+<html>
+<head>
+	<title>Tinder Meets LinkedIn</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <!-- // <script src="javascripts/jsnetworkx.js"></script> -->
+	<style>
+		body 		{ padding-top:80px; word-wrap:break-word; }
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="page-header text-center">
+			<h1><span class="fa fa-anchor"></span> Profile Page</h1>
+			<a href="/logout" class="btn btn-default btn-sm">Logout</a>
+		</div>
+		<div class="row">
+			<!-- LOCAL INFORMATION -->
+			<div class="col-sm-6">
+				<div class="well">
+					<h3><span class="fa fa-user"></span> Local</h3>
+				    <a href="/oauth/linkedin">Connect with data from LinkedIn</a>
+						<p>
+							<strong>name</strong>: <%= user.linkedin_name %><br>
+							<strong>id</strong>: <%= user._id %><br>
+							<strong>email</strong>: <%= user.linkedin_email %><br>
+							<strong>password</strong>: <%= user.local_password %><br>
+							<strong>linkedin id</strong>: <%= user.linkedin_id %><br>
+							<strong>token</strong>: <%= user.linkedin_token %><br>
+							<strong>location</strong>: <%= user.location %><br>
+							<strong>positions</strong>: <%= user.positions %><br>
+							<strong>groups</strong>: <%= user.groups %><br>
+							<strong>interests</strong>: <%= user.interests %><br>
+							<strong>skills</strong>: <%= user.skills %><br>
+							<strong>courses</strong>: <%= user.courses %><br>
+							<strong>follow_companies</strong>: <%= user.follow_companies %><br>
+							<strong>follow_people</strong>: <%= user.follow_people %><br>
+							<strong>connections</strong>: <%= user.connections %><br>
+						</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="graph"> <%= graph %> </div>
+	<div class="canvas"> </div>
+</body>
+<script> 
+var g = JSON.parse($('#graph').text());
+
+// jsnx.draw(G, {
+//     element: '#canvas',  
+//     weighted: true,
+//     edge_style: {
+//         'stroke-width': 10
+//     }
+// });
+
+console.log(g);
+</script>
+
+</html>
