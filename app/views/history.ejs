@@ -1,0 +1,74 @@
+<!-- views/profile.ejs -->
+<!doctype html>
+<html>
+<head>
+	<title>Tinder Meets LinkedIn</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.js"> </script>
+
+	<style>
+		body 		{ padding-top:80px; word-wrap:break-word; }
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="page-header text-center">
+			<h1><span class="fa fa-anchor"></span> Profile Page</h1>
+			<a href="/logout" class="btn btn-default btn-sm">Logout</a>
+		</div>
+		<ul class="nav nav-tabs">
+		    <li><a href="/profile">Today</a></li>
+		    <li class="active"><a href="/history">History</a></li>
+		    <li><a href="/user_profile">Profile</a></li>
+		</ul>
+		<div class="row">
+			<!-- LOCAL INFORMATION -->
+			<div class="col-sm-6">
+				<div class="well">
+					<h3><span class="fa fa-user"></span> History</h3>
+					<div id="history" ng-app="test" ng-controller="testCtrl">
+				      <input type="search" ng-model="history.name" placeholder="search history" />
+				      Number matched: {{(history|filter: history.name).length}} / {{history.length}}
+				      <li ng-repeat="hist in history | orderBy: hist.id | filter:history.name">
+				      	<br>
+				      	<p> Name: {{hist.linkedin_name}}</p>
+				        <p> LinkedIn ID: {{hist.linkedin_id}}</p>
+				        <p> LinkedIn email: {{hist.linkedin_email}}</p>
+				        <p> Location: {{hist.location}}</p>
+				        <p> Industry: {{hist.industry}}</p>
+				        <p> Positions: {{hist.positions}}</p>
+				        <p> Picture: </p>  <img src="{{hist.picture}}" alt="some_text" height="125" width="125">
+				        <p> Linkedin: <a href="{{hist.linkedin_url}}">{{hist.linkedin_url}}</a></p>
+				        <br><br>
+				      </li>
+				    </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script> 
+// Begin angular stuff
+var app = angular.module("test", []);
+function testCtrl($scope) {
+	$scope.history = [];
+	var json = [
+		{
+			'linkedin_id': 'abcde',
+			'linkedin_email': 'test@gmail.com',
+			'linkedin_name': 'test1',
+			'location': 'San Francisco Bay Area',
+			'positions': 'Software Engineer at Intuit',
+			'picture': 'https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-xfp1/t1.0-9/1506968_10152446632972774_3073535976158028597_n.jpg',
+			'linkedin_url': 'https://www.linkedin.com/in/vtian',
+			'industry': 'Software'
+		}
+	];
+
+	for (var i=0; i<json.length; i++) {
+    	$scope.history.push(json[i]);
+    }
+}
+</script>
+</html>
