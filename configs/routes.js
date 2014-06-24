@@ -211,6 +211,7 @@ module.exports = function(app, passport) {
                     addUser($in);
 
                     user.connections = JSON.stringify(connections);
+                    user.money = 5;
                     user.save(function(err) {
                         if (err) return err;
                     });
@@ -231,10 +232,13 @@ module.exports = function(app, passport) {
                         industry: $in['industry']
                     }, 'first_name last_name industry linkedin_url', function(err, people) {
                         if (err) return err;
-                        res.render('profile_graph.ejs', {
+                        res.render('profile.ejs', {
                             user: user,
-                            graph: JSON.stringify(G),
-                            common: JSON.stringify(people)
+                            loginUrl: FB.getLoginUrl({
+                                scope: 'publish_actions'
+                            })
+                            // graph: JSON.stringify(G),
+                            // common: JSON.stringify(people)
                         });
                     });
                 });
@@ -297,17 +301,17 @@ module.exports = function(app, passport) {
 
 
         // Test Twitter stuff
-        twit
-            .verifyCredentials(function(data) {
-                // check if credentials are ok for non-authenticated users
-                console.log(util.inspect(data));
-            })
-            .updateStatus("I'm finding and connecting with professionals via Tinder Meets LinkedIn! Check it out at tindermeetslinkedin.herokuapp.com!",
-                function(data) {
-                    // console.log(util.inspect(data));
-                    console.log('successfully posted to twitter!');
-                }
-        );
+        // twit
+        //     .verifyCredentials(function(data) {
+        //         // check if credentials are ok for non-authenticated users
+        //         console.log(util.inspect(data));
+        //     })
+        //     .updateStatus("I'm finding and connecting with professionals via Tinder Meets LinkedIn! Check it out at tindermeetslinkedin.herokuapp.com!",
+        //         function(data) {
+        //             // console.log(util.inspect(data));
+        //             console.log('successfully posted to twitter!');
+        //         }
+        // );
 
         var fbaccessToken = req.session.access_token;
         if (!fbaccessToken) {

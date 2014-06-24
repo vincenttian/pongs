@@ -22,7 +22,8 @@ var userSchema = mongoose.Schema({
     positions: String,
     picture: String,
     linkedin_url: String,
-    industry: String
+    industry: String,
+    money: Number
 });
 
 // methods ======================
