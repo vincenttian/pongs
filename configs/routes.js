@@ -1,8 +1,8 @@
 // Dev Config
-// var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://localhost:3000/oauth/linkedin/callback');
+var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://localhost:3000/oauth/linkedin/callback');
 
 // Prod Config
-var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://tindermeetslinkedin.herokuapp.com/oauth/linkedin/callback');
+// var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://tindermeetslinkedin.herokuapp.com/oauth/linkedin/callback');
 var linkedin;
 
 var User = require('../app/models/user');
@@ -58,35 +58,37 @@ module.exports = function(app, passport) {
                         skills = [],
                         connections = [],
                         positions = [];
-                    for (var i = 0; i < $in['positions']['_total']; i++) {
+                    var totalPositions = $in['positions']['_total'];
+                    for (var i = 0; i < totalPositions; i++) {
                         var p = {};
                         p['company'] = $in['positions']['values'][i]['company']['name'];
                         p['title'] = $in['positions']['values'][i]['title'];
                         p['is_current'] = $in['positions']['values'][i]['isCurrent'];
                         p['industry'] = $in['positions']['values'][i]['company']['industry'];
-                        positions.push(p)
+                        positions.push(p);
                     }
                     user.positions = JSON.stringify(positions);
 
                     for (var i = 0; i < $in['courses']['_total']; i++) {
-                        courses.push($in['courses']['values'][i]['name'])
+                        courses.push($in['courses']['values'][i]['name']);
                     }
                     user.courses = courses;
                     for (var i = 0; i < $in['following']['companies']['_total']; i++) {
-                        follow_companies.push($in['following']['companies']['values'][i]['name'])
+                        follow_companies.push($in['following']['companies']['values'][i]['name']);
                     }
                     user.follow_companies = follow_companies;
                     for (var i = 0; i < $in['following']['people']['_total']; i++) {
-                        follow_people.push($in['following']['people']['values'][i]['name'])
+                        follow_people.push($in['following']['people']['values'][i]['name']);
                     }
                     user.follow_people = follow_people;
                     for (var i = 0; i < $in['groupMemberships']['_total']; i++) {
-                        groups.push($in['groupMemberships']['values'][i]['group']['name'])
+                        groups.push($in['groupMemberships']['values'][i]['group']['name']);
                     }
                     user.groups = groups;
-                    user.interests = $in['interests'];
+                    var interests = $in['interests'];
+                    user.interests = (interests === undefined) ? "" : interests; //do I need to check this for all fields?
                     for (var i = 0; i < $in['skills']['_total']; i++) {
-                        skills.push($in['skills']['values'][i]['skill']['name'])
+                        skills.push($in['skills']['values'][i]['skill']['name']);
                     }
                     user.skills = skills;
                     user.location = $in['location']['name'];
