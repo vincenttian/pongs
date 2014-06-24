@@ -8,10 +8,18 @@ var linkedin;
 // Facebook
 var FB = require('fb'),
     Step = require('step');
+
+// Dev FB Config
+// FB.options({
+//     appId: '1519833888232441',
+//     appSecret: 'ddc71639c0210e3fc36c8899f621b2dc',
+//     redirectUri: 'http://localhost:3000/profile/callback'
+// });
+// Prod FB Config
 FB.options({
     appId: '1519833888232441',
     appSecret: 'ddc71639c0210e3fc36c8899f621b2dc',
-    redirectUri: 'http://localhost:3000/profile/callback'
+    redirectUri: 'tindermeetslinkedin.herokuapp.com/profile/callback'
 });
 
 var User = require('../app/models/user');
