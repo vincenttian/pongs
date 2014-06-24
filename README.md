@@ -1,7 +1,14 @@
 #LinkedIn Tinder
 
-###Vincent Tian
+###ByVincent Tian and Jordeen Chang
 
+###Wireframe
+Invision: http://invis.io/p/QDZ22SCG
+
+###Backlog
+Trello: https://trello.com/b/5ThUckdH/tindermeetslinkedin
+
+###Technologies Used:
 Node.js Authentication:
 http://scotch.io/tutorials/javascript/easy-node-authentication-setup-and-local
 
