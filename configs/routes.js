@@ -206,17 +206,17 @@ module.exports = function(app, passport) {
     });
 
     // LINKEDIN authentication page 
-    app.get('/linkedin', function(req, res) {
+    app.get('/linkedin', isLoggedIn, function(req, res) {
         res.render('linkedin.ejs'); // load the index.ejs file
     });
 
     // user match history page 
-    app.get('/history', function(req, res) {
+    app.get('/history', isLoggedIn, function(req, res) {
         res.render('history.ejs'); // load the index.ejs file
     });
 
     // user profile page 
-    app.get('/user_profile', function(req, res) {
+    app.get('/user_profile', isLoggedIn, function(req, res) {
         res.render('user_profile.ejs'); // load the index.ejs file
     });
 
