@@ -30,18 +30,17 @@
 					<div id="history" ng-app="test" ng-controller="testCtrl">
 				      <input type="search" ng-model="history.name" placeholder="search history" />
 				      Number matched: {{(history|filter: history.name).length}} / {{history.length}}
-				      <li ng-repeat="hist in history | orderBy: hist.id | filter:history.name">
+				      <div ng-repeat="hist in history | orderBy: hist.id | filter:history.name">
 				      	<br>
-				      	<p> Name: {{hist.linkedin_name}}</p>
-				        <p> LinkedIn ID: {{hist.linkedin_id}}</p>
-				        <p> LinkedIn email: {{hist.linkedin_email}}</p>
-				        <p> Location: {{hist.location}}</p>
-				        <p> Industry: {{hist.industry}}</p>
-				        <p> Positions: {{hist.positions}}</p>
-				        <p> Picture: </p>  <img src="{{hist.picture}}" alt="some_text" height="125" width="125">
-				        <p> Linkedin: <a href="{{hist.linkedin_url}}">{{hist.linkedin_url}}</a></p>
-				        <br><br>
-				      </li>
+				      	<strong> Name:</strong> {{hist.linkedin_name}} <br>
+				        <strong> Location:</strong> {{hist.location}}<br>
+						<img src="{{hist.picture}}" alt="some_text" height="80" width="80"><br>
+						<a href="{{hist.linkedin_url}}">LinkedIn Profile</a><br>
+				        <strong> Industry:</strong> {{hist.industry}}<br>
+				        <strong> Positions:</strong> {{hist.positions}}<br>
+				        <strong> LinkedIn email:</strong> {{hist.linkedin_email}}
+				        <br>
+				      </div>
 				    </div>
 				</div>
 			</div>
@@ -56,13 +55,23 @@ function testCtrl($scope) {
 	var json = [
 		{
 			'linkedin_id': 'abcde',
-			'linkedin_email': 'test@gmail.com',
+			'linkedin_email': 'test1@gmail.com',
 			'linkedin_name': 'test1',
 			'location': 'San Francisco Bay Area',
 			'positions': 'Software Engineer at Intuit',
 			'picture': 'https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-xfp1/t1.0-9/1506968_10152446632972774_3073535976158028597_n.jpg',
 			'linkedin_url': 'https://www.linkedin.com/in/vtian',
 			'industry': 'Software'
+		},
+		{
+			'linkedin_id': 'seed',
+			'linkedin_email': 'test2@gmail.com',
+			'linkedin_name': 'test2',
+			'location': 'San Francisco Bay Area',
+			'positions': 'Software Engineer at Parnassus Investments',
+			'picture': 'https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-xap1/t1.0-9/10352764_10154059630770234_5619661920937521192_n.jpg',
+			'linkedin_url': 'https://www.linkedin.com/in/vtian',
+			'industry': 'Financial Services'
 		}
 	];
 
