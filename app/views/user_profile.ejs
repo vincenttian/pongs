@@ -25,13 +25,60 @@
 			<div class="col-sm-6">
 				<div class="well">
 					<h3><span class="fa fa-user"></span> Profile</h3>
+					<a href="/oauth/linkedin">Update data from LinkedIn</a>
+						<p>
+							<strong>Name</strong>: <%= user.linkedin_name %><br>
+							<strong>Location</strong>: <%= user.location %><br>
+							<img src=<%= user.picture %>><br>
+							<a href=<%= user.linkedin_url %> target="blank">LinkedIn Profile</a><br>
+							<strong>Industry</strong>: <%= user.industry %><br>
+							<strong>Tinder Meets LinkedIn Currency</strong>: <%= user.money %> Skips<br>
+							<p id = "profilePositions"></p>
+							<strong>Interests</strong>: <%= user.interests %><br>
+							<strong>Skills</strong>: <%= user.skills %><br>
+							<strong>Companies Following</strong>: <%= user.follow_companies %><br>
+							<strong>People Following</strong>: <%= user.follow_people %><br>
+
+
+<!-- 							<strong>name</strong>: <%= user.linkedin_name %><br>
+							<strong>id</strong>: <%= user._id %><br>
+							<strong>email</strong>: <%= user.linkedin_email %><br>
+							<strong>password</strong>: <%= user.local_password %><br>
+							<strong>linkedin id</strong>: <%= user.linkedin_id %><br>
+							<strong>token</strong>: <%= user.linkedin_token %><br>
+							<strong>location</strong>: <%= user.location %><br>
+							<strong>picture</strong>: <%= user.picture %><br>
+							<strong>linkedin_url</strong>: <%= user.linkedin_url %><br>
+							<strong>industry</strong>: <%= user.industry %><br>
+							<strong>positions</strong>: <%= user.positions %><br>
+							<strong>groups</strong>: <%= user.groups %><br>
+							<strong>interests</strong>: <%= user.interests %><br>
+							<strong>skills</strong>: <%= user.skills %><br>
+							<strong>courses</strong>: <%= user.courses %><br>
+							<strong>follow_companies</strong>: <%= user.follow_companies %><br>
+							<strong>follow_people</strong>: <%= user.follow_people %><br> -->
+							<!-- <strong>connections</strong>: <%= user.connections %><br> -->
+						</p>
 				</div>
 			</div>
 		</div>
 	</div>
 </body>
 <script> 
-
+var positions = <%- user.positions %>;
+positions = JSON.stringify(positions);
+var posObject = JSON.parse(positions);
+var currPosition = "";
+var pastPositions = "<strong>Past Positions: </strong>";
+for (var i = 0; i < posObject.length; i += 1) {
+	// console.log(posObject[i]);
+    if (posObject[i]['is_current']) {
+        currPosition = "<strong>Current Position: </strong>" + posObject[i]['title'] + " at " + posObject[i]['company'] + "<br>";
+    } else {
+        pastPositions += posObject[i]['company'] + " at " + posObject[i]['title'] + "<br>";
+    }
+}
+document.getElementById("profilePositions").innerHTML = currPosition + pastPositions;
 
 </script>
 </html>

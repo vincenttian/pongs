@@ -263,7 +263,9 @@ module.exports = function(app, passport) {
 
     // user profile page 
     app.get('/user_profile', isLoggedIn, function(req, res) {
-        res.render('user_profile.ejs'); // load the index.ejs file
+        res.render('user_profile.ejs', {
+            user: req.user
+        }); // load the index.ejs file
     });
 
     // LOGIN: show the login form
