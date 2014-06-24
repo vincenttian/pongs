@@ -21,6 +21,9 @@ https://github.com/fkling/JSNetworkX
 Mongoose Docs:
 http://mongoosejs.com/docs/
 
+Node.js FB API:
+https://github.com/Thuzi/facebook-node-sdk
+
 ###MongoDB
 
 

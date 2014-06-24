@@ -278,11 +278,23 @@ module.exports = function(app, passport) {
                 })
             });
         } else { // User is signed in with facebook successfully
-            res.render('profile.ejs', {
-                user: req.user, // get the user out of session and pass to template
-                loginUrl: FB.getLoginUrl({
-                    scope: 'user_about_me'
-                })
+
+            var body = 'My first post using facebook-node-sdk';
+            FB.api('me/feed', 'post', {
+                message: body,
+                access_token: req.session.access_token
+            }, function(r) {
+                if (!r || r.error) {
+                    console.log(!r ? 'error occurred' : r.error);
+                } else {
+                    console.log('Post Id: ' + r.id);
+                }
+                res.render('profile.ejs', {
+                    user: req.user, // get the user out of session and pass to template
+                    loginUrl: FB.getLoginUrl({
+                        scope: 'user_about_me'
+                    })
+                });
             });
         }
     });
@@ -339,6 +351,11 @@ module.exports = function(app, passport) {
     app.get('/logout', function(req, res) {
         req.logout();
         res.redirect('/');
+    });
+
+    // Facebook Privacy Policy
+    app.get('/fbprivacypolicy', function(req, res) {
+        res.render('fbprivacypolicy.ejs');
     });
 
 };
