@@ -19,7 +19,10 @@ var userSchema = mongoose.Schema({
     interests: String,
     skills: String,
     location: String,
-    positions: String
+    positions: String,
+    picture: String,
+    linkedin_url: String,
+    industry: String
 });
 
 // methods ======================

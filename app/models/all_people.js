@@ -9,7 +9,8 @@ var allPeopleSchema = mongoose.Schema({
     last_name: String,
     location: String,
     linkedin_url: String,
-    industry: String
+    industry: String,
+    picture: String
 });
 
 // create the model for users and expose it to our app

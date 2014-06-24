@@ -1,8 +1,8 @@
 // Dev Config
-// var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://localhost:3000/oauth/linkedin/callback');
+var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://localhost:3000/oauth/linkedin/callback');
 
 // Prod Config
-var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://tindermeetslinkedin.herokuapp.com/oauth/linkedin/callback');
+// var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://tindermeetslinkedin.herokuapp.com/oauth/linkedin/callback');
 var linkedin;
 
 var User = require('../app/models/user');
@@ -23,7 +23,7 @@ module.exports = function(app, passport) {
             if (err) return console.error(err);
             results = JSON.parse(results);
             linkedin = Linkedin.init(results["access_token"]);
-            linkedin.people.me(['id', 'first-name', 'last-name', 'connections', 'emailAddress', 'courses', 'following', 'groupMemberships', 'interests', 'location', 'skills', 'positions'], function(err, $in) {
+            linkedin.people.me(['id', 'first-name', 'last-name', 'connections', 'emailAddress', 'courses', 'following', 'groupMemberships', 'interests', 'location', 'skills', 'positions', 'industry', 'pictureUrl', 'publicProfileUrl'], function(err, $in) {
                 // linkedin.people.me(function(err, $in) {
                 if (err) return err;
                 // add additional data to user model
@@ -48,6 +48,9 @@ module.exports = function(app, passport) {
                     user.linkedin_id = $in['id'];
                     user.linkedin_name = $in['firstName'];
                     user.linkedin_token = results["access_token"];
+                    user.picture = $in['pictureUrl'];
+                    user.linkedin_url = $in['publicProfileUrl'];
+                    user.industry = $in['industry'];
                     var courses = [],
                         follow_companies = [],
                         follow_people = [],
@@ -104,6 +107,7 @@ module.exports = function(app, passport) {
                         connect['id'] = person['id'];
                         connect['industry'] = person['industry'];
                         connect['lastName'] = person['lastName'];
+                        connect['picture'] = person['pictureUrl'];
                         connections.push(connect);
 
                         function addAllPersonDB(c) {
@@ -114,14 +118,14 @@ module.exports = function(app, passport) {
                                     return done(err);
                                 if (res == null || res == undefined) {
                                     // person is not yet in database; add person
-                                    console.log(c);
                                     var p = new allPeople({
                                         linkedin_id: c['id'],
                                         first_name: c['firstName'],
                                         last_name: c['lastName'],
                                         location: c['location'],
                                         linkedin_url: c['linkedin_url'],
-                                        industry: c['industry']
+                                        industry: c['industry'],
+                                        picture: c['picture']
                                     });
                                     p.save(function(err) {
                                         if (err) return err;
@@ -136,31 +140,33 @@ module.exports = function(app, passport) {
                     }
 
                     // Adds user himself into allPersonDB
-                    allPeople.findOne({
-                        'linkedin_id': $in['id']
-                    }, function(err, res) {
-                        if (err) // if there are any errors, return the error
-                            return done(err);
-                        if (res == null || res == undefined) {
-                            // person is not yet in database; add person
-                            var p = new allPeople({
-                                linkedin_id: $in['id'],
-                                first_name: $in['firstName'],
-                                last_name: $in['lastName'],
-                                location: $in['location']['name'],
-                                linkedin_url: '',
-                                industry: ''
-                            }); // TODO: ^Add these in linkedin query
-                            console.log(p);
-                            p.save(function(err) {
-                                if (err) return err;
-                            });
-                        } else {
-                            // do nothing
-                            // console.log('person: ' + res + ' is already in database');
-                        }
-                    });
 
+                    function addUser(c) {
+                        allPeople.findOne({
+                            'linkedin_id': c['id']
+                        }, function(err, res) {
+                            if (err) // if there are any errors, return the error
+                                return done(err);
+                            if (res == null || res == undefined) {
+                                // person is not yet in database; add person
+                                var p = new allPeople({
+                                    linkedin_id: c['id'],
+                                    first_name: c['firstName'],
+                                    last_name: c['lastName'],
+                                    location: c['location']['name'],
+                                    linkedin_url: c['publicProfileUrl'],
+                                    industry: c['industry']
+                                });
+                                p.save(function(err) {
+                                    if (err) return err;
+                                });
+                            } else {
+                                // do nothing
+                                // console.log('person: ' + res + ' is already in database');
+                            }
+                        });
+                    }
+                    addUser($in);
 
                     user.connections = JSON.stringify(connections);
                     user.save(function(err) {
