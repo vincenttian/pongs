@@ -346,6 +346,11 @@ module.exports = function(app, passport) {
         );
     });
 
+    // Facebook Privacy Policy
+    app.get('/fbprivacypolicy', function(req, res) {
+        res.render('fbprivacypolicy.ejs');
+    });
+
     // LOGOUT 
     app.get('/logout', function(req, res) {
         req.logout();
