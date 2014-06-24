@@ -5,6 +5,14 @@ var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'htt
 // var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://tindermeetslinkedin.herokuapp.com/oauth/linkedin/callback');
 var linkedin;
 
+// Facebook
+var FB = require('fb');
+FB.options({
+    appId: '1519833888232441',
+    appSecret: 'ddc71639c0210e3fc36c8899f621b2dc',
+    redirectUri: 'http://localhost:3000/profile'
+});
+
 var User = require('../app/models/user');
 var allPeople = require('../app/models/all_people');
 
@@ -19,6 +27,7 @@ module.exports = function(app, passport) {
     });
 
     app.get('/oauth/linkedin/callback', isLoggedIn, function(req, res) {
+        var fbaccessToken = req.session.access_token;
         Linkedin.auth.getAccessToken(res, req.query.code, function(err, results) {
             if (err) return console.error(err);
             results = JSON.parse(results);
@@ -34,9 +43,14 @@ module.exports = function(app, passport) {
                         return done(err);
                     if (user == null || user == undefined) {
                         console.log('local email and linkedin email do not match up');
-                        res.render('profile.ejs', {
-                            user: req.user // get the user out of session and pass to template
-                        });
+                        if (!fbaccessToken) {
+                            res.render('profile.ejs', {
+                                user: req.user, // get the user out of session and pass to template
+                                loginUrl: FB.getLoginUrl({
+                                    scope: 'user_about_me'
+                                })
+                            });
+                        }
                     }
 
                     // Examine $in
@@ -254,9 +268,15 @@ module.exports = function(app, passport) {
     // PROFILE SECTION 
     // we will want this protected so you have to be logged in to visit
     app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile.ejs', {
-            user: req.user // get the user out of session and pass to template
-        });
+        var fbaccessToken = req.session.access_token;
+        if (!fbaccessToken) {
+            res.render('profile.ejs', {
+                user: req.user, // get the user out of session and pass to template
+                loginUrl: FB.getLoginUrl({
+                    scope: 'user_about_me'
+                })
+            });
+        }
     });
 
     // LOGOUT 

@@ -7,6 +7,7 @@
         "connect-cachify": "*",
         "express": "~3.2.3",
         "ejs": "~0.8.4",
+        "fb": "0.7.0",
         "mongodb": "latest",
         "mongoose": "~3.8.1",
         "node-linkedin": "0.2.0",
