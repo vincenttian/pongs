@@ -15,11 +15,16 @@
 			<h1><span class="fa fa-anchor"></span> Profile Page</h1>
 			<a href="/logout" class="btn btn-default btn-sm">Logout</a>
 		</div>
+		<ul class="nav nav-tabs">
+		    <li class="active"><a href="/profile">Today</a></li>
+		    <li><a href="/history">History</a></li>
+		    <li><a href="/user_profile">Profile</a></li>
+		</ul>
 		<div class="row">
 			<!-- LOCAL INFORMATION -->
 			<div class="col-sm-6">
 				<div class="well">
-					<h3><span class="fa fa-user"></span> Local</h3>
+					<h3><span class="fa fa-user"></span> Today</h3>
 				    <a href="/oauth/linkedin">Update data from LinkedIn</a>
 						<p>
 							<strong>name</strong>: <%= user.linkedin_name %><br>

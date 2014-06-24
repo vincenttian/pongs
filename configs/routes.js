@@ -210,6 +210,16 @@ module.exports = function(app, passport) {
         res.render('linkedin.ejs'); // load the index.ejs file
     });
 
+    // user match history page 
+    app.get('/history', function(req, res) {
+        res.render('history.ejs'); // load the index.ejs file
+    });
+
+    // user profile page 
+    app.get('/user_profile', function(req, res) {
+        res.render('user_profile.ejs'); // load the index.ejs file
+    });
+
     // LOGIN: show the login form
     app.get('/login', function(req, res) {
         // render the page and pass in any flash data if it exists

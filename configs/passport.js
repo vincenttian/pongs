@@ -42,11 +42,6 @@ module.exports = function(passport) {
 
         function(req, email, password, done) {
 
-            console.log(email);
-            console.log(password);
-            // also need linkedin Id, linkedin token, linkedin name
-
-
             // asynchronous
             // User.findOne wont fire unless data is sent back
             process.nextTick(function() {
