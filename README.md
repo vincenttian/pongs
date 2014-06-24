@@ -24,6 +24,9 @@ http://mongoosejs.com/docs/
 Node.js FB API:
 https://github.com/Thuzi/facebook-node-sdk
 
+Node.js Twitter API:
+https://github.com/desmondmorris/node-twitter
+
 ###MongoDB
 
 

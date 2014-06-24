@@ -15,6 +15,7 @@
         "passport-local": "~0.1.6",
         "nconf": "~0.6.7",
         "step": "0.0.5",
+        "twitter": "0.2.9 ",
         "view-helpers": "latest",
         "winston": "~0.7.1",
         "winston-request-logger": "latest"

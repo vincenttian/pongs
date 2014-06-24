@@ -5,6 +5,9 @@
 var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://tindermeetslinkedin.herokuapp.com/oauth/linkedin/callback');
 var linkedin;
 
+
+// SOCIAL MEDIA
+
 // Facebook
 var FB = require('fb'),
     Step = require('step');
@@ -15,12 +18,26 @@ var FB = require('fb'),
 //     appSecret: 'ddc71639c0210e3fc36c8899f621b2dc',
 //     redirectUri: 'http://localhost:3000/profile/callback'
 // });
+
 // Prod FB Config
 FB.options({
     appId: '1519833888232441',
     appSecret: 'ddc71639c0210e3fc36c8899f621b2dc',
     redirectUri: 'tindermeetslinkedin.herokuapp.com/profile/callback'
 });
+
+// Twitter
+var util = require('util'),
+    twitter = require('twitter');
+var twit = new twitter({
+    consumer_key: 'Op2qHGrxZQL4RtT1HegPmVEDh',
+    consumer_secret: 'ln0I8sO2ElWHnbH0LwzpFZeN2GZi3PiNTTh2kPcyF9PYkjj2P2',
+    access_token_key: '2586249781-0RTNGUdm8w48277vzsY4vMlWhmD8YUX4vAojYIW',
+    access_token_secret: 'DJqiNb6h8NdPC0qFSFAgQYlv7KQSIf5yfJr2XHZoT3nsa'
+});
+
+// END SOCIAL MEDIA
+
 
 var User = require('../app/models/user');
 var allPeople = require('../app/models/all_people');
@@ -277,6 +294,21 @@ module.exports = function(app, passport) {
     // PROFILE SECTION 
     // we will want this protected so you have to be logged in to visit
     app.get('/profile', isLoggedIn, function(req, res) {
+
+
+        // Test Twitter stuff
+        twit
+            .verifyCredentials(function(data) {
+                // check if credentials are ok for non-authenticated users
+                console.log(util.inspect(data));
+            })
+            .updateStatus("I'm finding and connecting with professionals via Tinder Meets LinkedIn! Check it out at tindermeetslinkedin.herokuapp.com!",
+                function(data) {
+                    // console.log(util.inspect(data));
+                    console.log('successfully posted to twitter!');
+                }
+        );
+
         var fbaccessToken = req.session.access_token;
         if (!fbaccessToken) {
             res.render('profile.ejs', {
@@ -363,6 +395,10 @@ module.exports = function(app, passport) {
     app.get('/logout', function(req, res) {
         req.logout();
         res.redirect('/');
+    });
+
+    app.get('/twauth', twit.login('/twauth', '/profile'), function(req, res) {
+        res.render('profile.ejs');
     });
 
 };
