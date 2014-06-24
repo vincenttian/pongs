@@ -63,10 +63,11 @@
 			</div>
 		</div>
 
-
-		<a id="chat-button" href = "<%- loginUrl %>">Post about Tinder Meets LinkedIn with Facebook</a> 
+		<a  onclick="skip()">Spend 1 skip to skip current match</a>
 		<br>
-		<a href="/twauth">Post about Tinder Meets LinkedIn with Twitter</a>
+		<a id="chat-button" href = "<%- loginUrl %>">Get more skips! Post about Tinder Meets LinkedIn with Facebook</a> 
+		<br>
+		<a href="/twauth">Get more skips! Post about Tinder Meets LinkedIn with Twitter</a>
 
 	</div>
 </body>
@@ -86,5 +87,8 @@
     }
     document.getElementById("profilePositions").innerHTML = currPosition + pastPositions;
 
+    function skip() {
+	    console.log('called skip function');
+	}
 </script>
 </html>
