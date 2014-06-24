@@ -182,9 +182,18 @@ module.exports = function(app, passport) {
                             G.add_edge(user.linkedin_id, connections[i]['id']);
                         }
                     }
-                    res.render('profile_graph.ejs', {
-                        user: user,
-                        graph: JSON.stringify(G)
+
+                    // finds all people that are in the same industry and location as user
+                    allPeople.find({
+                        location: $in['location']['name'],
+                        industry: $in['industry']
+                    }, 'first_name last_name industry linkedin_url', function(err, people) {
+                        if (err) return err;
+                        res.render('profile_graph.ejs', {
+                            user: user,
+                            graph: JSON.stringify(G),
+                            common: JSON.stringify(people)
+                        });
                     });
                 });
             });

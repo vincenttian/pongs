@@ -41,27 +41,17 @@
 							<strong>courses</strong>: <%= user.courses %><br>
 							<strong>follow_companies</strong>: <%= user.follow_companies %><br>
 							<strong>follow_people</strong>: <%= user.follow_people %><br>
-							<strong>connections</strong>: <%= user.connections %><br>
+							<!-- <strong>connections</strong>: <%= user.connections %><br> -->
 						</p>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div id="graph" style="visibility: hidden;"> <%= graph %> </div>
-	<div class="canvas"> </div>
 </body>
 <script> 
-var g = JSON.parse($('#graph').text());
-
-// jsnx.draw(G, {
-//     element: '#canvas',  
-//     weighted: true,
-//     edge_style: {
-//         'stroke-width': 10
-//     }
-// });
-
+var g = <%- graph %>;
+var p = <%- common %>;
 console.log(g);
+console.log(p);
 </script>
-
 </html>

@@ -11,6 +11,9 @@ https://github.com/Kuew/node-linkedin
 Javascript Graph Library:
 https://github.com/fkling/JSNetworkX
 
+Mongoose Docs:
+http://mongoosejs.com/docs/
+
 ###MongoDB
 
 
