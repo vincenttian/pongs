@@ -1,8 +1,8 @@
 // Dev Config
-// var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://localhost:3000/oauth/linkedin/callback');
+var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://localhost:3000/oauth/linkedin/callback');
 
 // Prod Config
-var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://tindermeetslinkedin.herokuapp.com/oauth/linkedin/callback');
+// var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://tindermeetslinkedin.herokuapp.com/oauth/linkedin/callback');
 var linkedin;
 
 
@@ -13,18 +13,18 @@ var FB = require('fb'),
     Step = require('step');
 
 // Dev FB Config
-// FB.options({
-//     appId: '1519833888232441',
-//     appSecret: 'ddc71639c0210e3fc36c8899f621b2dc',
-//     redirectUri: 'http://localhost:3000/profile/callback'
-// });
-
-// Prod FB Config
 FB.options({
     appId: '1519833888232441',
     appSecret: 'ddc71639c0210e3fc36c8899f621b2dc',
-    redirectUri: 'tindermeetslinkedin.herokuapp.com/profile/callback'
+    redirectUri: 'http://localhost:3000/fb/callback'
 });
+
+// Prod FB Config
+// FB.options({
+//     appId: '1519833888232441',
+//     appSecret: 'ddc71639c0210e3fc36c8899f621b2dc',
+//     redirectUri: 'tindermeetslinkedin.herokuapp.com/fb/callback'
+// });
 
 // Twitter
 var util = require('util'),
@@ -54,21 +54,18 @@ module.exports = function(app, passport) {
     app.use(app.router);
     app.use(function(req, res, next) {
         res.status(404);
-        // respond with html page
         if (req.accepts('html')) {
             res.render('404', {
                 url: req.url
             });
             return;
         }
-        // respond with json
         if (req.accepts('json')) {
             res.send({
                 error: 'Not found'
             });
             return;
         }
-        // default to plain-text. send()
         res.type('txt').send('Not found');
     });
 
@@ -322,54 +319,16 @@ module.exports = function(app, passport) {
     }));
 
     // PROFILE SECTION 
-    // we will want this protected so you have to be logged in to visit
     app.get('/profile', isLoggedIn, function(req, res) {
-
-        // Test Twitter stuff
-        // twit
-        //     .verifyCredentials(function(data) {
-        //         // check if credentials are ok for non-authenticated users
-        //         console.log('\ngot here');
-        //         console.log(util.inspect(data) + '\n');
-        //     })
-
-
-        //     .updateStatus("I'm finding and connecting with professionals via Tinder Meets LinkedIn! Check it out at tindermeetslinkedin.herokuapp.com!",
-        //         function(data) {
-        //             // console.log(util.inspect(data));
-        //             console.log('successfully posted to twitter!');
-        // });
-
-        var fbaccessToken = req.session.access_token;
-        if (!fbaccessToken) {
-            res.render('profile.ejs', {
-                user: req.user, // get the user out of session and pass to template
-                loginUrl: FB.getLoginUrl({
-                    scope: 'publish_actions'
-                })
-            });
-        } else { // User is signed in with facebook successfully
-            var body = "I'm finding and connecting with professionals via Tinder Meets LinkedIn! Check it out at tindermeetslinkedin.herokuapp.com!";
-            FB.api('me/feed', 'post', {
-                message: body,
-                access_token: req.session.access_token
-            }, function(r) {
-                if (!r || r.error) {
-                    console.log(!r ? 'error occurred' : r.error);
-                } else {
-                    console.log('Post Id: ' + r.id);
-                }
-                res.render('profile.ejs', {
-                    user: req.user, // get the user out of session and pass to template
-                    loginUrl: FB.getLoginUrl({
-                        scope: 'publish_actions'
-                    })
-                });
-            });
-        }
+        res.render('profile.ejs', {
+            user: req.user, // get the user out of session and pass to template
+            loginUrl: FB.getLoginUrl({
+                scope: 'publish_actions'
+            })
+        });
     });
 
-    app.get('/profile/callback', isLoggedIn, function(req, res, next) {
+    app.get('/fb/callback', isLoggedIn, function(req, res, next) {
         var code = req.query.code;
         if (req.query.error) {
             // user might have disallowed the app
@@ -408,10 +367,10 @@ module.exports = function(app, passport) {
                             return res.send(500, result || 'error');
                             // return res.send(500, 'error');
                         }
-                        return res.redirect('/profile');
+                        return res.redirect('/fb_post');
                     });
                 } else {
-                    return res.redirect('/profile');
+                    return res.redirect('/fb_post');
                 }
             }
         );
@@ -428,8 +387,31 @@ module.exports = function(app, passport) {
         res.redirect('/');
     });
 
-    app.get('/twauth', twit.login('/twauth', '/profile'), function(req, res) {
+    app.get('/twauth', twit.login('/twauth', '/twitter_post'), function(req, res) {
         res.render('profile.ejs');
+    });
+
+    app.get('/twitter_post', isLoggedIn, function(req, res) {
+        twit.updateStatus("I'm finding and connecting with professionals via Tinder Meets LinkedIn! Check it out at tindermeetslinkedin.herokuapp.com!",
+            function(data) {
+                console.log('successfully posted to twitter!');
+            });
+        res.redirect('/profile');
+    });
+
+    app.get('/fb_post', isLoggedIn, function(req, res) {
+        var body = "I'm finding and connecting with professionals via Tinder Meets LinkedIn! Check it out at tindermeetslinkedin.herokuapp.com!";
+        FB.api('me/feed', 'post', {
+            message: body,
+            access_token: req.session.access_token
+        }, function(r) {
+            if (!r || r.error) {
+                console.log(!r ? 'error occurred' : r.error);
+            } else {
+                console.log('Post Id: ' + r.id);
+            }
+        });
+        res.redirect('/profile');
     });
 };
 

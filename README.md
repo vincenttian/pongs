@@ -84,4 +84,6 @@ $ mongo
 	> db.allpeoples.find({industry: "Computer Software", location: "San Francisco Bay Area"})
 
 #####Production VS Development
-To switch between dev and prod, uncomment/comment the database and redirect url in server.js and configs/routes.js. Also change the redirect url for the fb wall post feature.
+To switch between dev and prod, uncomment/comment the database and redirect url in server.js and configs/routes.js. 
+Also change the redirect url for the fb wall post feature. 
+Also profile.ejs socket url
