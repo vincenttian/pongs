@@ -37,6 +37,7 @@ var twit = new twitter({
 });
 
 // END SOCIAL MEDIA
+var flash = require('connect-flash');
 
 var serverModule = require('../server');
 var server = serverModule.server;
@@ -95,7 +96,8 @@ module.exports = function(app, passport) {
                                 user: req.user, // get the user out of session and pass to template
                                 loginUrl: FB.getLoginUrl({
                                     scope: 'publish_actions'
-                                })
+                                }),
+                                message: req.flash('info')
                             });
                         }
                     }
@@ -258,8 +260,6 @@ module.exports = function(app, passport) {
                             loginUrl: FB.getLoginUrl({
                                 scope: 'publish_actions'
                             })
-                            // graph: JSON.stringify(G),
-                            // common: JSON.stringify(people)
                         });
                     });
                 });
@@ -320,11 +320,29 @@ module.exports = function(app, passport) {
 
     // PROFILE SECTION 
     app.get('/profile', isLoggedIn, function(req, res) {
+
+
+        console.log('implement algo here');
+
+
+        // finds all people that are in the same industry and location as user
+        // allPeople.find({
+        //     location: req.user.location,
+        //     industry: req.user.industry
+        // }, 'first_name last_name industry linkedin_url', function(err, people) {
+        //     if (err) return err;
+        //     console.log(people);
+        // });
+
+        console.log('GOT HERE');
+        console.log(req.flash('info'));
+
         res.render('profile.ejs', {
             user: req.user, // get the user out of session and pass to template
             loginUrl: FB.getLoginUrl({
                 scope: 'publish_actions'
-            })
+            }),
+            message: req.flash('info')
         });
     });
 
@@ -396,6 +414,7 @@ module.exports = function(app, passport) {
             function(data) {
                 console.log('successfully posted to twitter!');
             });
+        req.flash('info', "You've posted to your Twitter page!")
         res.redirect('/profile');
     });
 
@@ -411,6 +430,7 @@ module.exports = function(app, passport) {
                 console.log('Post Id: ' + r.id);
             }
         });
+        req.flash('info', "You've posted to your Facebook page!")
         res.redirect('/profile');
     });
 };

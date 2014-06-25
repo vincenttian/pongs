@@ -26,9 +26,16 @@
 			<!-- LOCAL INFORMATION -->
 			<div class="col-sm-6">
 				<div class="well">
-					<h3><span class="fa fa-user"></span> Today</h3>
+					<% if (message) { %>
+						<p><%= message %></p>
+					<% } %>
+					<h3><span class="fa fa-user"></span> Today's Match</h3>
+
+					<p> New matches are made daily at 10am, 4pm, and 10pm</p>
+
 				    <a href="/oauth/linkedin">Update data from LinkedIn</a>
 						<p>
+							<br>
 							<strong>Tinder Meets LinkedIn Currency</strong>: <div id="money"> <%= user.money %> Skips </div><div id="no_money"></div><br>
 							<strong>Name</strong>: <%= user.linkedin_name %><br>
 							<strong>Location</strong>: <%= user.location %><br>
