@@ -5,6 +5,8 @@
 	<title>Tinder Meets LinkedIn</title>
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<style>
 		body 		{ padding-top:80px; word-wrap:break-word; }
 	</style>
@@ -27,17 +29,19 @@
 					<h3><span class="fa fa-user"></span> Today</h3>
 				    <a href="/oauth/linkedin">Update data from LinkedIn</a>
 						<p>
+							<strong>Tinder Meets LinkedIn Currency</strong>: <div id="money"> <%= user.money %> Skips </div><div id="no_money"></div><br>
 							<strong>Name</strong>: <%= user.linkedin_name %><br>
 							<strong>Location</strong>: <%= user.location %><br>
 							<img src=<%= user.picture %>><br>
 							<a href=<%= user.linkedin_url %> target="blank">LinkedIn Profile</a><br>
 							<strong>Industry</strong>: <%= user.industry %><br>
-							<strong>Tinder Meets LinkedIn Currency</strong>: <%= user.money %> Skips<br>
 							<p id = "profilePositions"></p>
 							<strong>Interests</strong>: <%= user.interests %><br>
 							<strong>Skills</strong>: <%= user.skills %><br>
 							<strong>Companies Following</strong>: <%= user.follow_companies %><br>
 							<strong>People Following</strong>: <%= user.follow_people %><br>
+
+							<div id="uuid" style="visibility:hidden"><%= user._id %></div>
 
 
 <!-- 							<strong>name</strong>: <%= user.linkedin_name %><br>
@@ -72,6 +76,7 @@
 	</div>
 </body>
 <script> 
+    var socket = io.connect('http://localhost');
 	var positions = <%- user.positions %>;
 	positions = JSON.stringify(positions);
     var posObject = JSON.parse(positions);
@@ -88,7 +93,18 @@
     document.getElementById("profilePositions").innerHTML = currPosition + pastPositions;
 
     function skip() {
-	    console.log('called skip function');
+    	var curr = $('#money').text().split(' ');
+    	if (Number(curr[1]) <= 0) {
+    		$('#money').text($('#money').text());
+    		$('#no_money').text('Sorry, you have no more skips! Get more skips by sharing about Tinder Meets LinkedIn at the bottom!');
+    	} else {
+	    	var updated_money = Number(curr[1]) - 1;
+	    	curr[1] = updated_money.toString();
+	    	var new_curr = ' ' + curr[1] + ' Skips';
+	    	$('#money').text(new_curr);
+	    	var uuid = $('#uuid').text();
+		    socket.emit('update currency', uuid, curr[1]);
+		}
 	}
 </script>
 </html>

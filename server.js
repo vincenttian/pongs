@@ -45,37 +45,40 @@ require('./configs/passport')(passport); // pass passport for configuration
 // load express settings
 require('./configs/express')(app, nconf, express, logger);
 
+var server = require('http').createServer(app);
+exports.server = server;
+
 // Bootstrap routes
 require('./configs/routes')(app);
 
-// start server
-http.createServer(app).listen(app.get('port'), function() {
-    console.log('Express server listening on port ' + app.get('port'));
+// Start server
+server.listen(app.get('port'), function() {
+    console.log('Server listening at port %d', app.get('port'));
 });
 
 // DATABASE STUFF
 
 // Production
-var mongoUri = process.env.MONGOLAB_URI ||
-    process.env.MONGOHQ_URL ||
-    'mongodb://localhost/mydb';
-mongoose.connect(mongoUri);
-var mongo = require('mongodb');
-mongo.Db.connect(mongoUri, function(err, db) {
-    db.collection('mydocs', function(er, collection) {
-        collection.insert({
-            'mykey': 'myvalue'
-        }, {
-            safe: true
-        }, function(er, rs) {});
-    });
-});
+// var mongoUri = process.env.MONGOLAB_URI ||
+//     process.env.MONGOHQ_URL ||
+//     'mongodb://localhost/mydb';
+// mongoose.connect(mongoUri);
+// var mongo = require('mongodb');
+// mongo.Db.connect(mongoUri, function(err, db) {
+//     db.collection('mydocs', function(er, collection) {
+//         collection.insert({
+//             'mykey': 'myvalue'
+//         }, {
+//             safe: true
+//         }, function(er, rs) {});
+//     });
+// });
 
 // Development
-// mongoose.connect("mongodb://localhost:27017/test");
-// var MongoClient = require('mongodb').MongoClient;
-// MongoClient.connect("mongodb://localhost:27017/test", function(err, db) {
-//     if (!err) {
-//         console.log("MongoDB is connected");
-//     }
-// });
+mongoose.connect("mongodb://localhost:27017/test");
+var MongoClient = require('mongodb').MongoClient;
+MongoClient.connect("mongodb://localhost:27017/test", function(err, db) {
+    if (!err) {
+        console.log("MongoDB is connected");
+    }
+});

@@ -1,8 +1,8 @@
 // Dev Config
-// var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://localhost:3000/oauth/linkedin/callback');
+var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://localhost:3000/oauth/linkedin/callback');
 
 // Prod Config
-var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://tindermeetslinkedin.herokuapp.com/oauth/linkedin/callback');
+// var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://tindermeetslinkedin.herokuapp.com/oauth/linkedin/callback');
 var linkedin;
 
 
@@ -13,18 +13,18 @@ var FB = require('fb'),
     Step = require('step');
 
 // Dev FB Config
-// FB.options({
-//     appId: '1519833888232441',
-//     appSecret: 'ddc71639c0210e3fc36c8899f621b2dc',
-//     redirectUri: 'http://localhost:3000/profile/callback'
-// });
-
-// Prod FB Config
 FB.options({
     appId: '1519833888232441',
     appSecret: 'ddc71639c0210e3fc36c8899f621b2dc',
-    redirectUri: 'tindermeetslinkedin.herokuapp.com/profile/callback'
+    redirectUri: 'http://localhost:3000/profile/callback'
 });
+
+// Prod FB Config
+// FB.options({
+//     appId: '1519833888232441',
+//     appSecret: 'ddc71639c0210e3fc36c8899f621b2dc',
+//     redirectUri: 'tindermeetslinkedin.herokuapp.com/profile/callback'
+// });
 
 // Twitter
 var util = require('util'),
@@ -38,6 +38,9 @@ var twit = new twitter({
 
 // END SOCIAL MEDIA
 
+var serverModule = require('../server');
+var server = serverModule.server;
+var io = require('socket.io')(server);
 
 var User = require('../app/models/user');
 var allPeople = require('../app/models/all_people');
@@ -323,12 +326,14 @@ module.exports = function(app, passport) {
     app.get('/profile', isLoggedIn, function(req, res) {
 
         // Test Twitter stuff
-        twit
-            .verifyCredentials(function(data) {
-                // check if credentials are ok for non-authenticated users
-                console.log('\ngot here');
-                console.log(util.inspect(data) + '\n');
-            })
+        // twit
+        //     .verifyCredentials(function(data) {
+        //         // check if credentials are ok for non-authenticated users
+        //         console.log('\ngot here');
+        //         console.log(util.inspect(data) + '\n');
+        //     })
+
+
         //     .updateStatus("I'm finding and connecting with professionals via Tinder Meets LinkedIn! Check it out at tindermeetslinkedin.herokuapp.com!",
         //         function(data) {
         //             // console.log(util.inspect(data));
@@ -426,7 +431,6 @@ module.exports = function(app, passport) {
     app.get('/twauth', twit.login('/twauth', '/profile'), function(req, res) {
         res.render('profile.ejs');
     });
-
 };
 
 function isLoggedIn(req, res, next) {
@@ -436,3 +440,20 @@ function isLoggedIn(req, res, next) {
     // if they aren't redirect them to the home page
     res.redirect('/');
 }
+
+io.sockets.on('connection', function(socket) {
+    socket.on('update currency', function(uuid, currency) {
+        User.findOne({
+            '_id': uuid
+        }, function(err, res) {
+            if (err) // if there are any errors, return the error
+                return done(err);
+            if (res == null || res == undefined) {
+                // query was called incorrectly
+            } else {
+                res['money'] = Number(currency);
+                res.save();
+            }
+        });
+    });
+});
