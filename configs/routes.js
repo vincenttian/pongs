@@ -1,8 +1,8 @@
 // Dev Config
-var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://localhost:3000/oauth/linkedin/callback');
+// var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://localhost:3000/oauth/linkedin/callback');
 
 // Prod Config
-// var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://tindermeetslinkedin.herokuapp.com/oauth/linkedin/callback');
+var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://tindermeetslinkedin.herokuapp.com/oauth/linkedin/callback');
 var linkedin;
 
 
@@ -13,18 +13,18 @@ var FB = require('fb'),
     Step = require('step');
 
 // Dev FB Config
-FB.options({
-    appId: '1519833888232441',
-    appSecret: 'ddc71639c0210e3fc36c8899f621b2dc',
-    redirectUri: 'http://localhost:3000/profile/callback'
-});
-
-// Prod FB Config
 // FB.options({
 //     appId: '1519833888232441',
 //     appSecret: 'ddc71639c0210e3fc36c8899f621b2dc',
-//     redirectUri: 'tindermeetslinkedin.herokuapp.com/profile/callback'
+//     redirectUri: 'http://localhost:3000/profile/callback'
 // });
+
+// Prod FB Config
+FB.options({
+    appId: '1519833888232441',
+    appSecret: 'ddc71639c0210e3fc36c8899f621b2dc',
+    redirectUri: 'tindermeetslinkedin.herokuapp.com/profile/callback'
+});
 
 // Twitter
 var util = require('util'),
