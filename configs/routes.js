@@ -322,19 +322,18 @@ module.exports = function(app, passport) {
     // we will want this protected so you have to be logged in to visit
     app.get('/profile', isLoggedIn, function(req, res) {
 
-
         // Test Twitter stuff
-        // twit
-        //     .verifyCredentials(function(data) {
-        //         // check if credentials are ok for non-authenticated users
-        //         console.log(util.inspect(data));
-        //     })
+        twit
+            .verifyCredentials(function(data) {
+                // check if credentials are ok for non-authenticated users
+                console.log('\ngot here');
+                console.log(util.inspect(data) + '\n');
+            })
         //     .updateStatus("I'm finding and connecting with professionals via Tinder Meets LinkedIn! Check it out at tindermeetslinkedin.herokuapp.com!",
         //         function(data) {
         //             // console.log(util.inspect(data));
         //             console.log('successfully posted to twitter!');
-        //         }
-        // );
+        // });
 
         var fbaccessToken = req.session.access_token;
         if (!fbaccessToken) {
