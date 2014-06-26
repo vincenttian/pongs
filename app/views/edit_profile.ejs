@@ -1,0 +1,70 @@
+<!-- views/profile.ejs -->
+<!doctype html>
+<html>
+<head>
+	<title>Tinder Meets LinkedIn</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<style>
+		body 		{ padding-top:80px; word-wrap:break-word; }
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="page-header text-center">
+			<h1><span class="fa fa-anchor"></span> Profile Page</h1>
+			<a href="/logout" class="btn btn-default btn-sm">Logout</a>
+		</div>
+		<ul class="nav nav-tabs">
+		    <li><a href="/profile">Today</a></li>
+		    <li><a href="/history">History</a></li>
+		    <li><a href="/user_profile">Profile</a></li>
+		</ul>
+		<div class="row">
+			<!-- LOCAL INFORMATION -->
+			<div class="col-sm-6">
+				<div class="well">
+					<h3><span class="fa fa-user"></span> Edit Profile</h3>
+						<p>
+							<form action="/edit_profile" method="post" action="edit_profile">
+						  		<strong>Name</strong>: <input id="edit_name" type="text" value=<%= user.linkedin_name %>><br>
+						  		<!-- <strong>Location</strong>: <input type="text" value=<%= user.location %>><br> -->
+								<strong>Location</strong>: <%= user.location %><br>
+								<img src=<%= user.picture %>><br>
+								<a href=<%= user.linkedin_url %> target="blank">LinkedIn Profile</a><br>
+								<strong>Industry</strong>: <%= user.industry %><br>
+						  		<!-- <strong>Industry</strong>: <input type="text" value=<%= user.industry %>><br> -->
+								<strong>Tinder Meets LinkedIn Currency</strong>: <%= user.money %> Skips<br>
+								<p id = "profilePositions"></p>
+								<strong>Interests</strong>: <%= user.interests %><br>
+								<strong>Skills</strong>: <%= user.skills %><br>
+								<strong>Companies Following</strong>: <%= user.follow_companies %><br>
+								<strong>People Following</strong>: <%= user.follow_people %><br>
+								<button type="submit" class="btn btn-warning btn-lg" onclick="edit();">Finish Editing</button>
+								<div id="id" style="visibility:hidden;"><%= user._id %></div>
+							</form>
+						</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script> 
+var positions = <%- user.positions %>;
+positions = JSON.stringify(positions);
+var posObject = JSON.parse(positions);
+var currPosition = "";
+var pastPositions = "<strong>Past Positions: </strong>";
+for (var i = 0; i < posObject.length; i += 1) {
+	// console.log(posObject[i]);
+    if (posObject[i]['is_current']) {
+        currPosition = "<strong>Current Position: </strong>" + posObject[i]['title'] + " at " + posObject[i]['company'] + "<br>";
+    } else {
+        pastPositions += posObject[i]['company'] + " at " + posObject[i]['title'] + "<br>";
+    }
+}
+document.getElementById("profilePositions").innerHTML = currPosition + pastPositions;
+
+</script>
+</html>

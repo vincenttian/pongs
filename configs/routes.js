@@ -319,10 +319,22 @@ module.exports = function(app, passport) {
         failureFlash: true // allow flash messages
     }));
 
+    app.get('/edit_profile', isLoggedIn, function(req, res) {
+        console.log('got here');
+        res.render('edit_profile.ejs', {
+            user: req.user
+        });
+        return;
+    });
+
+    app.post('/edit_profile', isLoggedIn, function(req, res) {
+        console.log('GOT TO POST OF EDIT_PROFILE');
+        res.redirect('/user_profile');
+        // console.log(var1.req.user);
+    });
+
     // PROFILE SECTION 
     app.get('/profile', isLoggedIn, function(req, res) {
-
-
         console.log('implement algo here');
 
 
@@ -335,8 +347,7 @@ module.exports = function(app, passport) {
         //     console.log(people);
         // });
 
-        console.log('GOT HERE');
-        console.log(req.flash('info'));
+        console.log('flash info: ' + req.flash('info'));
 
         res.render('profile.ejs', {
             user: req.user, // get the user out of session and pass to template
