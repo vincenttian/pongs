@@ -7,6 +7,8 @@
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <script src="/socket.io/socket.io.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/flipclock.css">
+    <script src="javascripts/flipclock.min.js"></script>
 	<style>
 		body 		{ padding-top:80px; word-wrap:break-word; }
 	</style>
@@ -24,6 +26,7 @@
 		</ul>
 		<div class="row">
 			<!-- LOCAL INFORMATION -->
+			Time until next match: <div class="clock"></div>
 			<div class="col-sm-6">
 				<div class="well">
 					<% if (message) { %>
@@ -113,5 +116,25 @@
 		    socket.emit('update currency', uuid, curr[1]);
 		}
 	}
+
+	var now = new Date();
+	var curr_year = now.getFullYear();
+	var curr_month = now.getMonth();
+	var curr_day = now.getDate();
+	var time1 = new Date(curr_year, curr_month, curr_day, 10);
+	var time2 = new Date(curr_year, curr_month, curr_day, 16);
+	var time3 = new Date(curr_year, curr_month, curr_day, 22);
+	var diff1 = time1 - now;
+	var diff2 = time2 - now;
+	var diff3 = time3 - now;
+	var match_times = [diff1, diff2, diff3];
+	var diff;
+	for (var i=0; i<match_times.length; i++) {
+		if (match_times[i] > 0) diff = match_times[i];
+	}
+	var clock = $('.clock').FlipClock(diff/1000, {
+		autostart: true,
+		countdown: true
+	});
 </script>
 </html>

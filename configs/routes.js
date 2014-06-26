@@ -259,7 +259,8 @@ module.exports = function(app, passport) {
                             user: user,
                             loginUrl: FB.getLoginUrl({
                                 scope: 'publish_actions'
-                            })
+                            }),
+                            message: req.flash('info')
                         });
                     });
                 });
