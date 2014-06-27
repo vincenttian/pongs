@@ -97,7 +97,7 @@
         if (posObject[i]['is_current']) {
             currPosition = "<strong>Current Position: </strong>" + posObject[i]['title'] + " at " + posObject[i]['company'] + "<br>";
         } else {
-            pastPositions += posObject[i]['company'] + " at " + posObject[i]['title'] + "<br>";
+            pastPositions += posObject[i]['title'] + " at " + posObject[i]['company'] + "<br>";
         }
     }
     document.getElementById("profilePositions").innerHTML = currPosition + pastPositions;
