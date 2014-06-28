@@ -329,6 +329,15 @@ module.exports = function(app, passport) {
 
     app.post('/edit_profile', isLoggedIn, function(req, res) {
         console.log('GOT TO POST OF EDIT_PROFILE');
+        console.log(req.body);
+        // User.findOne({
+        //     '': ''
+        // }, function(err, u) {
+        //     if (err) throw err;
+        //     u.name = req.body.name;
+        //     u.name = req.body.name;
+        //     u.name = req.body.name;          
+        // })
         res.redirect('/user_profile');
         // console.log(var1.req.user);
     });
