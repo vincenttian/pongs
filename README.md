@@ -1,6 +1,6 @@
-#LinkedIn Tinder
+#Pongs
 
-###ByVincent Tian and Jordeen Chang
+###By Vincent Tian and Jordeen Chang
 
 ###Wireframe
 Invision: http://invis.io/p/QDZ22SCG

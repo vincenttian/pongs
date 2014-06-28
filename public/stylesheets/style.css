@@ -39,8 +39,8 @@ title {
     width: 275px;
     /*padding-top: 10px;*/
     position: relative;
-    background-color: #ffcb8c;
-    /*background-color: #ffe2bf;*/
+    /*background-color: #ffcb8c;*/
+    background-color: #ffe2bf;
     text-align: center;
 }
 .blurbTitle {
@@ -60,7 +60,6 @@ title {
     transition: all 400ms ease;
 }
 .tileText:hover .blurb {
-    border-radius: 5px 5px 5px 5px;
     color: white;
     visibility: visible;
     -webkit-transition: all 400ms ease;
@@ -75,17 +74,19 @@ title {
 }
 .tileText:hover .blurbTitle {
     line-height: 100px;
-    -webkit-transition: all 600ms ease;
-    -moz-transition: all 600ms ease;
-    -ms-transition: all 600ms ease;
-    -o-transition: all 600ms ease;
-    transition: all 600ms ease;
+    -webkit-transition: all 400ms ease;
+    -moz-transition: all 400ms ease;
+    -ms-transition: all 400ms ease;
+    -o-transition: all 400ms ease;
+    transition: all 400ms ease;
+}
+.tileText:hover {
+    background-color: #ffcb8c;
 }
 .blurb {
     padding-top: 70px;
     padding-left: 30px;
     padding-right: 30px;
-    border-radius: 5px 5px 5px 5px;
     position:absolute;
     color: rgba(0, 0, 0, 0);
     font-size:16px;

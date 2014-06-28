@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
 <head>
-	<title>Tinder Meets LinkedIn</title>
+	<title>Pongs</title>
 <!-- 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> -->
 	<link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
     <script src="/socket.io/socket.io.js"></script>
@@ -28,10 +28,10 @@
 		</ul>
 		<div class="row">
 			<!-- LOCAL INFORMATION -->
-			Time until next match: <div class="clock"></div>
+			Time until next ping: <div class="clock"></div>
 			<div class="col-sm-6">
 				<div class="well">
-					<h3><span class="fa fa-user"></span> Today's Match</h3>
+					<h3><span class="fa fa-user"></span> Today's Ping</h3>
 
 					<p> New matches are made daily at 10am, 4pm, and 10pm</p>
 
@@ -39,7 +39,7 @@
 						<p>
 							<br>
 							<img class="profile-pic" src=<%= user.picture %>><br>
-							<strong>Tinder Meets LinkedIn Currency</strong>: <div id="money"> <%= user.money %> Skips </div><div id="no_money"></div><br>
+							<strong>Pings:</strong>: <div id="money"> <%= user.money %> Skips </div><div id="no_money"></div><br>
 							<strong>Name</strong>: <%= user.linkedin_name %><br>
 							<strong>Location</strong>: <%= user.location %><br>
 							<a href=<%= user.linkedin_url %> target="blank">LinkedIn Profile</a><br>
@@ -82,9 +82,9 @@
 
 		<a  onclick="skip()">Spend 1 skip to skip current match</a>
 		<br>
-		<a id="chat-button" href = "<%- loginUrl %>">Get more skips! Post about Tinder Meets LinkedIn with Facebook</a> 
+		<a id="chat-button" href = "<%- loginUrl %>">Get more skips! Post about Pongs with Facebook</a> 
 		<br>
-		<a href="/twauth">Get more skips! Post about Tinder Meets LinkedIn with Twitter</a>
+		<a href="/twauth">Get more skips! Post about Pongs with Twitter</a>
 
 	</div>
 </body>
@@ -115,7 +115,7 @@
     	var curr = $('#money').text().split(' ');
     	if (Number(curr[1]) <= 0) {
     		$('#money').text($('#money').text());
-    		$('#no_money').text('Sorry, you have no more skips! Get more skips by sharing about Tinder Meets LinkedIn at the bottom!');
+    		$('#no_money').text('Sorry, you have no more skips! Get more skips by sharing about Pongs at the bottom!');
     	} else {
 	    	var updated_money = Number(curr[1]) - 1;
 	    	curr[1] = updated_money.toString();
