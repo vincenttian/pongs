@@ -46,8 +46,12 @@
 							<strong>Industry</strong>: <%= user.industry %><br>
 							<p id = "profilePositions"></p>
 							<strong>Interests</strong>: <%= user.interests %><br>
-							<strong>Skills</strong>: <%= user.skills %><br>
-							<strong>Companies Following</strong>: <%= user.follow_companies %><br>
+							<p id="skills"> 
+								<strong>Skills</strong>: <%= user.skills %>
+							</p><br>
+							<p id="follow_c">
+								<strong>Companies Following</strong>: <%= user.follow_companies %><br>
+							</p>
 							<strong>People Following</strong>: <%= user.follow_people %><br>
 
 							<div id="uuid" style="visibility:hidden"><%= user._id %></div>
@@ -100,6 +104,12 @@
         }
     }
     document.getElementById("profilePositions").innerHTML = currPosition + pastPositions;
+
+    // Format stuff
+    var skills = $('#skills').html();
+    $('#skills').html(skills.replace(/,/g, ', '));
+    var follow_c = $('#follow_c').html();
+    $('#follow_c').html(follow_c.replace(/,/g, ', '));
 
     function skip() {
     	var curr = $('#money').text().split(' ');
