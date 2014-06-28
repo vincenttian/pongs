@@ -29,6 +29,7 @@
 					<h3>Edit Profile</h3>
 						<p>
 							<form action="/edit_profile" method="post" action="edit_profile">
+						  		<input name="id" value=<%= user.linkedin_id %> style="visibility:hidden;"><br>
 						  		<strong>Name</strong>: <input id="edit_name" type="text" name="name" value=<%= user.linkedin_name %>><br>
 						  		<!-- <strong>Location</strong>: <input type="text" value=<%= user.location %>><br> -->
 								<strong>Location</strong>: <%= user.location %><br>
