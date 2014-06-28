@@ -7,6 +7,7 @@
     "connect-flash": "latest",
     "ejs": "~0.8.4",
     "express": "~3.2.3",
+    "express-partials": "^0.2.0",
     "fb": "0.7.0",
     "moment": "^2.7.0",
     "mongodb": "latest",
@@ -21,8 +22,7 @@
     "twitter": "0.2.9 ",
     "view-helpers": "latest",
     "winston": "~0.7.1",
-    "winston-request-logger": "latest",
-    "express-partials": "^0.2.0"
+    "winston-request-logger": "latest"
   },
   "subdomain": "vincenttian-cassandra",
   "scripts": {

@@ -31,16 +31,16 @@
 							<form action="/edit_profile" method="post" action="edit_profile">
 						  		<input name="id" value=<%= user.linkedin_id %> style="visibility:hidden;"><br>
 						  		<strong>Name</strong>: <input id="edit_name" type="text" name="name" value=<%= user.linkedin_name %>><br>
-						  		<!-- <strong>Location</strong>: <input type="text" value=<%= user.location %>><br> -->
-								<strong>Location</strong>: <%= user.location %><br>
+						  		<strong>Location</strong>: <input type="text" name="location" id="edit_location" style="width: 200px;"><br>
 								<img src=<%= user.picture %>><br>
 								<a href=<%= user.linkedin_url %> target="blank">LinkedIn Profile</a><br>
-								<strong>Industry</strong>: <%= user.industry %><br>
-						  		<!-- <strong>Industry</strong>: <input type="text" value=<%= user.industry %>><br> -->
+						  		<strong>Industry</strong>: <input type="text" id="edit_industry" name="industry"><br>
 								<strong>Tinder Meets LinkedIn Currency</strong>: <%= user.money %> Skips<br>
 								<p id = "profilePositions"></p>
-								<strong>Interests</strong>: <%= user.interests %><br>
-								<strong>Skills</strong>: <%= user.skills %><br>
+						  		<strong>Interests</strong>: 
+						  		<textarea id="edit_interests" name="interests"> </textarea> <br>
+						  		<strong>Skills</strong>:
+						  		<textarea id="edit_skills" name="skills"> </textarea><br>
 								<strong>Companies Following</strong>: <%= user.follow_companies %><br>
 								<strong>People Following</strong>: <%= user.follow_people %><br>
 								<button type="submit" class="btn btn-warning btn-lg" onclick="edit();">Finish Editing</button>
@@ -67,6 +67,16 @@ for (var i = 0; i < posObject.length; i += 1) {
     }
 }
 document.getElementById("profilePositions").innerHTML = currPosition + pastPositions;
-
+var x = <%-str_user%>;
+var name = x.linkedin_name;
+var industry = x.industry;
+var skills = x.skills;
+var interests = x.interests;
+var loc = x.location;
+$('#edit_name').val(name);
+$('#edit_industry').val(industry);
+$('#edit_skills').val(skills);
+$('#edit_interests').val(interests);
+$('#edit_location').val(loc);
 </script>
 </html>
