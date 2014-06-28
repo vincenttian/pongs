@@ -1,6 +1,6 @@
-#LinkedIn Tinder
+#Pongs
 
-###ByVincent Tian and Jordeen Chang
+###By Vincent Tian and Jordeen Chang
 
 ###Backlog
 Trello: https://trello.com/b/5ThUckdH/pongs
