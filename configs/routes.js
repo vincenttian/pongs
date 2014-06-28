@@ -1,10 +1,9 @@
 // Dev Config
-// var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://localhost:3000/oauth/linkedin/callback');
+var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://localhost:3000/oauth/linkedin/callback');
 
 // Prod Config
-var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://tindermeetslinkedin.herokuapp.com/oauth/linkedin/callback');
-var linkedin;
-
+// var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://tindermeetslinkedin.herokuapp.com/oauth/linkedin/callback');
+// var linkedin;
 
 // SOCIAL MEDIA
 
@@ -57,7 +56,8 @@ module.exports = function(app, passport) {
         res.status(404);
         if (req.accepts('html')) {
             res.render('404', {
-                url: req.url
+                url: req.url,
+                layout: false
             });
             return;
         }
@@ -260,7 +260,8 @@ module.exports = function(app, passport) {
                             loginUrl: FB.getLoginUrl({
                                 scope: 'publish_actions'
                             }),
-                            message: req.flash('info')
+                            message: req.flash('info'),
+                            page: 'profile'
                         });
                     });
                 });
