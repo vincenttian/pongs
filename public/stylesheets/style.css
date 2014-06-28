@@ -37,8 +37,66 @@ title {
 .tileText {
     height: 275px;
     width: 275px;
-    padding-top: 10px;
-    position relative;
-    background-color: #ffcb8c;
+    /*padding-top: 10px;*/
+    position: relative;
+    /*background-color: #ffcb8c;*/
+    background-color: #ffe2bf;
     text-align: center;
+}
+.blurbTitle {
+    position:absolute;
+    border-radius: 5px 5px 5px 5px;
+    left:0;
+    top:0;
+    width: 275px;
+    height: 275px;
+    -webkit-transition: all 100ms ease;
+    -moz-transition: all 100ms ease;
+    -ms-transition: all 100ms ease;
+    -o-transition: all 100ms ease;
+    transition: all 100ms ease;
+}
+.tileText:hover .blurb {
+    border-radius: 5px 5px 5px 5px;
+    visibility: visible;
+    color: white;
+    -webkit-transition: all 600ms ease;
+    -moz-transition: all 600ms ease;
+    -ms-transition: all 600ms ease;
+    -o-transition: all 600ms ease;
+    transition: all 600ms ease;
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select:none;
+    -webkit-user-select:none;
+}
+.tileText:hover .blurbTitle {
+    visibility: hidden;
+    /*    -webkit-transition: all 600ms ease;
+    -moz-transition: all 600ms ease;
+    -ms-transition: all 600ms ease;
+    -o-transition: all 600ms ease;
+    transition: all 600ms ease;*/
+}
+.blurb {
+    border-radius: 5px 5px 5px 5px;
+    /*position:absolute;*/
+    color: rgba(0, 0, 0, 0);
+    font-size:16px;
+    /*left:20px;*/
+    width: 275px;
+    height: 275px;
+    background-color: #ffcb8c;
+    /*right: 20px;*/
+    visibility: hidden;
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select:none;
+    -webkit-user-select:none;
+    -o-user-select:none;
+    -webkit-transition: all 600ms ease;
+    -moz-transition: all 600ms ease;
+    -ms-transition: all 600ms ease;
+    -o-transition: all 600ms ease;
+    transition: all 600ms ease;
 }
