@@ -138,8 +138,10 @@
 	var match_times = [diff1, diff2, diff3];
 	var diff;
 	for (var i=0; i<match_times.length; i++) {
-		if (match_times[i] > 0) diff = match_times[i];
-		break;
+		if (match_times[i] > 0) {
+			diff = match_times[i];
+			break;
+		}
 	}
 	if (diff == null) {
 		var special = new Date(curr_year, curr_month, curr_day, 10).addDays(1);
