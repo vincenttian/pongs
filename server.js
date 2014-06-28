@@ -5,7 +5,8 @@ var express = require('express'),
     winston = require('winston'),
     flash = require('connect-flash'),
     passport = require('passport'),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    partials = require('express-partials');
 
 if (!process.env.NODE_ENV) {
     process.env.NODE_ENV = 'local';
@@ -29,6 +30,7 @@ nconf.argv().env().file({
 nconf.set('approot', __dirname); // set approot root
 
 var app = express();
+app.use(partials());
 
 app.use(express.static(__dirname + "/public"));
 app.use(express.cookieParser());

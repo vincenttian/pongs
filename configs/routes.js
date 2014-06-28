@@ -270,23 +270,31 @@ module.exports = function(app, passport) {
 
     // HOME PAGE (with login links) 
     app.get('/', function(req, res) {
-        res.render('index.ejs'); // load the index.ejs file
+        console.log(req.user);
+        res.render('index.ejs', {
+            layout: false
+        }); // load the index.ejs file
     });
 
     // LINKEDIN authentication page 
     app.get('/linkedin', isLoggedIn, function(req, res) {
-        res.render('linkedin.ejs'); // load the index.ejs file
+        res.render('linkedin.ejs', {
+            layout: false
+        }); // load the index.ejs file
     });
 
     // user match history page 
     app.get('/history', isLoggedIn, function(req, res) {
-        res.render('history.ejs'); // load the index.ejs file
+        res.render('history.ejs', {
+            page: 'history'
+        }); // load the index.ejs file
     });
 
     // user profile page 
     app.get('/user_profile', isLoggedIn, function(req, res) {
         res.render('user_profile.ejs', {
-            user: req.user
+            user: req.user,
+            page: 'user_profile'
         }); // load the index.ejs file
     });
 
@@ -294,7 +302,8 @@ module.exports = function(app, passport) {
     app.get('/login', function(req, res) {
         // render the page and pass in any flash data if it exists
         res.render('login.ejs', {
-            message: req.flash('loginMessage')
+            message: req.flash('loginMessage'),
+            layout: false
         });
     });
 
@@ -302,27 +311,31 @@ module.exports = function(app, passport) {
     app.post('/login', passport.authenticate('local-login', {
         successRedirect: '/profile', // redirect to the secure profile section
         failureRedirect: '/login', // redirect back to the signup page if there is an error
-        failureFlash: true // allow flash messages
+        failureFlash: true, // allow flash message
+        layout: false
     }));
 
     // SIGNUP: show the signup form
     app.get('/signup', function(req, res) {
         // render the page and pass in any flash data if it exists
         res.render('signup.ejs', {
-            message: req.flash('signupMessage')
+            message: req.flash('signupMessage'),
+            layout: false
         });
     });
 
     app.post('/signup', passport.authenticate('local-signup', {
         successRedirect: '/linkedin', // redirect to the secure profile section
         failureRedirect: '/signup', // redirect back to the signup page if there is an error
-        failureFlash: true // allow flash messages
+        failureFlash: true, // allow flash messages
+        layout: false
     }));
 
     app.get('/edit_profile', isLoggedIn, function(req, res) {
         console.log('got here');
         res.render('edit_profile.ejs', {
-            user: req.user
+            user: req.user,
+            layout: 'edit_profile'
         });
         return;
     });
@@ -363,7 +376,8 @@ module.exports = function(app, passport) {
             loginUrl: FB.getLoginUrl({
                 scope: 'publish_actions'
             }),
-            message: req.flash('info')
+            message: req.flash('info'),
+            page: 'profile'
         });
     });
 

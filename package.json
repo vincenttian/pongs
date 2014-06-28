@@ -21,7 +21,8 @@
     "twitter": "0.2.9 ",
     "view-helpers": "latest",
     "winston": "~0.7.1",
-    "winston-request-logger": "latest"
+    "winston-request-logger": "latest",
+    "express-partials": "^0.2.0"
   },
   "subdomain": "vincenttian-cassandra",
   "scripts": {
