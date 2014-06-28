@@ -1,10 +1,8 @@
 // Dev Config
 // var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://localhost:3000/oauth/linkedin/callback');
-
 // Prod Config
 var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://pongs.herokuapp.com/oauth/linkedin/callback');
 var linkedin;
-
 
 // SOCIAL MEDIA
 
@@ -14,10 +12,10 @@ var FB = require('fb'),
 
 // Dev FB Config
 // FB.options({
-//     appId: '1519833888232441',
-//     appSecret: 'ddc71639c0210e3fc36c8899f621b2dc',
-//     redirectUri: 'http://localhost:3000/fb/callback'
-// });
+        //     appId: '1519833888232441',
+        //     appSecret: 'ddc71639c0210e3fc36c8899f621b2dc',
+        //     redirectUri: 'http://localhost:3000/fb/callback'
+        // });
 
 // Prod FB Config
 FB.options({
@@ -57,7 +55,8 @@ module.exports = function(app, passport) {
         res.status(404);
         if (req.accepts('html')) {
             res.render('404', {
-                url: req.url
+                url: req.url,
+                layout: false
             });
             return;
         }
@@ -260,7 +259,8 @@ module.exports = function(app, passport) {
                             loginUrl: FB.getLoginUrl({
                                 scope: 'publish_actions'
                             }),
-                            message: req.flash('info')
+                            message: req.flash('info'),
+                            page: 'profile'
                         });
                     });
                 });
