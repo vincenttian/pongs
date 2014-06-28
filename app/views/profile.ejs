@@ -3,15 +3,17 @@
 <html>
 <head>
 	<title>Tinder Meets LinkedIn</title>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+<!-- 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> -->
+	<link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
     <script src="/socket.io/socket.io.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="stylesheets/flipclock.css">
+    <link rel="stylesheet" href="/stylesheets/style.css" >
     <script src="javascripts/flipclock.min.js"></script>
 	<style>
 		body 		{ padding-top:80px; word-wrap:break-word; }
 	</style>
+	<link href='http://fonts.googleapis.com/css?family=Asap:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
 	<div class="container">
@@ -39,10 +41,10 @@
 				    <!-- <a href="/oauth/linkedin">Update data from LinkedIn</a> -->
 						<p>
 							<br>
+							<img class="profile-pic" src=<%= user.picture %>><br>
 							<strong>Tinder Meets LinkedIn Currency</strong>: <div id="money"> <%= user.money %> Skips </div><div id="no_money"></div><br>
 							<strong>Name</strong>: <%= user.linkedin_name %><br>
 							<strong>Location</strong>: <%= user.location %><br>
-							<img src=<%= user.picture %>><br>
 							<a href=<%= user.linkedin_url %> target="blank">LinkedIn Profile</a><br>
 							<strong>Industry</strong>: <%= user.industry %><br>
 							<p id = "profilePositions"></p>

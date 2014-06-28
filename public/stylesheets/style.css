@@ -1,8 +1,44 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+* {
+    /*font-family: !important;*/
 }
-
-a {
-  color: #00B7FF;
+body {
+    background-image:url("../images/subtle_white_feathers.png");
+    background-repeat: repeat;
+}
+title {
+    font-weight: 700px !important;
+}
+.profile-pic {
+    margin: auto;
+}
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+.tile {
+    height: 300px;
+    position: relative;
+    vertical-align: middle;
+    display: inline-block;
+    margin-bottom: 40px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.tileContainer {
+    padding-top: 30px;
+    overflow: hidden;
+    max-width: 975px;
+    margin-left: auto;
+    text-align: center;
+    margin-right: auto;
+}
+.tileText {
+    height: 275px;
+    width: 275px;
+    padding-top: 10px;
+    position relative;
+    background-color: #ffcb8c;
+    text-align: center;
 }
