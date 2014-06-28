@@ -3,7 +3,8 @@
 <html>
 <head>
 	<title>Tinder Meets LinkedIn</title>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> -->
+	<link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<style>
@@ -25,10 +26,10 @@
 			<!-- LOCAL INFORMATION -->
 			<div class="col-sm-6">
 				<div class="well">
-					<h3><span class="fa fa-user"></span> Edit Profile</h3>
+					<h3>Edit Profile</h3>
 						<p>
 							<form action="/edit_profile" method="post" action="edit_profile">
-						  		<strong>Name</strong>: <input id="edit_name" type="text" value=<%= user.linkedin_name %>><br>
+						  		<strong>Name</strong>: <input id="edit_name" type="text" name="name" value=<%= user.linkedin_name %>><br>
 						  		<!-- <strong>Location</strong>: <input type="text" value=<%= user.location %>><br> -->
 								<strong>Location</strong>: <%= user.location %><br>
 								<img src=<%= user.picture %>><br>
