@@ -1,9 +1,8 @@
 // Dev Config
-var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://localhost:3000/oauth/linkedin/callback');
-
+// var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://localhost:3000/oauth/linkedin/callback');
 // Prod Config
-// var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://tindermeetslinkedin.herokuapp.com/oauth/linkedin/callback');
-// var linkedin;
+var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://tindermeetslinkedin.herokuapp.com/oauth/linkedin/callback');
+var linkedin;
 
 // SOCIAL MEDIA
 
@@ -13,10 +12,10 @@ var FB = require('fb'),
 
 // Dev FB Config
 // FB.options({
-//     appId: '1519833888232441',
-//     appSecret: 'ddc71639c0210e3fc36c8899f621b2dc',
-//     redirectUri: 'http://localhost:3000/fb/callback'
-// });
+        //     appId: '1519833888232441',
+        //     appSecret: 'ddc71639c0210e3fc36c8899f621b2dc',
+        //     redirectUri: 'http://localhost:3000/fb/callback'
+        // });
 
 // Prod FB Config
 FB.options({
@@ -293,7 +292,6 @@ module.exports = function(app, passport) {
 
     // user profile page 
     app.get('/user_profile', isLoggedIn, function(req, res) {
-        console.log(req.user);
         res.render('user_profile.ejs', {
             user: req.user,
             page: 'user_profile'
@@ -336,21 +334,21 @@ module.exports = function(app, passport) {
     app.get('/edit_profile', isLoggedIn, function(req, res) {
         res.render('edit_profile.ejs', {
             user: req.user,
-            layout: 'edit_profile'
+            layout: 'edit_profile',
+            str_user: JSON.stringify(req.user)
         });
-        return;
     });
 
     app.post('/edit_profile', isLoggedIn, function(req, res) {
-        console.log('GOT TO POST OF EDIT_PROFILE');
-        console.log(req.body);
         User.findOne({
             'linkedin_id': req.body.id
         }, function(err, u) {
             if (err) throw err;
             u.linkedin_name = req.body.name;
-            // u.name = req.body.name;
-            // u.name = req.body.name;
+            u.location = req.body.location;
+            u.industry = req.body.industry;
+            u.interests = req.body.interests;
+            u.skills = req.body.skills;
             u.save(function(err) {
                 if (err) return err;
                 res.redirect('/user_profile');
