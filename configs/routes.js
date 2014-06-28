@@ -285,6 +285,7 @@ module.exports = function(app, passport) {
 
     // user profile page 
     app.get('/user_profile', isLoggedIn, function(req, res) {
+        console.log(req.user);
         res.render('user_profile.ejs', {
             user: req.user
         }); // load the index.ejs file
@@ -320,7 +321,6 @@ module.exports = function(app, passport) {
     }));
 
     app.get('/edit_profile', isLoggedIn, function(req, res) {
-        console.log('got here');
         res.render('edit_profile.ejs', {
             user: req.user
         });
@@ -330,16 +330,18 @@ module.exports = function(app, passport) {
     app.post('/edit_profile', isLoggedIn, function(req, res) {
         console.log('GOT TO POST OF EDIT_PROFILE');
         console.log(req.body);
-        // User.findOne({
-        //     '': ''
-        // }, function(err, u) {
-        //     if (err) throw err;
-        //     u.name = req.body.name;
-        //     u.name = req.body.name;
-        //     u.name = req.body.name;          
-        // })
-        res.redirect('/user_profile');
-        // console.log(var1.req.user);
+        User.findOne({
+            'linkedin_id': req.body.id
+        }, function(err, u) {
+            if (err) throw err;
+            u.linkedin_name = req.body.name;
+            // u.name = req.body.name;
+            // u.name = req.body.name;
+            u.save(function(err) {
+                if (err) return err;
+                res.redirect('/user_profile');
+            });
+        });
     });
 
     // PROFILE SECTION 
