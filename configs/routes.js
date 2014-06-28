@@ -2,7 +2,7 @@
 // var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://localhost:3000/oauth/linkedin/callback');
 
 // Prod Config
-var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://tindermeetslinkedin.herokuapp.com/oauth/linkedin/callback');
+var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://pongs.herokuapp.com/oauth/linkedin/callback');
 var linkedin;
 
 
@@ -23,7 +23,7 @@ var FB = require('fb'),
 FB.options({
     appId: '1519833888232441',
     appSecret: 'ddc71639c0210e3fc36c8899f621b2dc',
-    redirectUri: 'tindermeetslinkedin.herokuapp.com/fb/callback'
+    redirectUri: 'pongs.herokuapp.com/fb/callback'
 });
 
 // Twitter
@@ -446,7 +446,7 @@ module.exports = function(app, passport) {
     });
 
     app.get('/twitter_post', isLoggedIn, function(req, res) {
-        twit.updateStatus("I'm finding and connecting with professionals via Tinder Meets LinkedIn! Check it out at tindermeetslinkedin.herokuapp.com!",
+        twit.updateStatus("I'm finding and connecting with professionals via Tinder Meets LinkedIn! Check it out at pongs.herokuapp.com!",
             function(data) {
                 console.log('successfully posted to twitter!');
             });
@@ -455,7 +455,7 @@ module.exports = function(app, passport) {
     });
 
     app.get('/fb_post', isLoggedIn, function(req, res) {
-        var body = "I'm finding and connecting with professionals via Tinder Meets LinkedIn! Check it out at tindermeetslinkedin.herokuapp.com!";
+        var body = "I'm finding and connecting with professionals via Tinder Meets LinkedIn! Check it out at pongs.herokuapp.com!";
         FB.api('me/feed', 'post', {
             message: body,
             access_token: req.session.access_token
