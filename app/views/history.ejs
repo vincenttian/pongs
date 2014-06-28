@@ -3,7 +3,8 @@
 <html>
 <head>
 	<title>Tinder Meets LinkedIn</title>
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> -->
+	<link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.js"> </script>
 
@@ -26,7 +27,7 @@
 			<!-- LOCAL INFORMATION -->
 			<div class="col-sm-6">
 				<div class="well">
-					<h3><span class="fa fa-user"></span> History</h3>
+					<h3>History</h3>
 					<div id="history" ng-app="test" ng-controller="testCtrl">
 				      <input type="search" ng-model="history.name" placeholder="search history" />
 				      Number matched: {{(history|filter: history.name).length}} / {{history.length}}
