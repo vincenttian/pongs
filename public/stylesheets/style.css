@@ -29,11 +29,31 @@ title {
 }
 .jumbotron2 {
     width: 100%;
-    padding:30px;
     color:inherit;
+    height: 75px;
     /*background-color:#aed9d1; LIGHT BLUE*/
     background-color:#a63737;
     text-align: center;
+}
+.halfButton a {
+    color: white;
+    text-decoration: none;
+    font-size: 200%;
+}
+.halfButton {
+    /*color: white;*/
+    padding-top: 20px;
+    width: 50%;
+    height: inherit;
+    float: left;
+}
+.halfButton:hover {
+    background-color: #c44c4c;
+    -webkit-transition: all 600ms ease;
+    -moz-transition: all 600ms ease;
+    -ms-transition: all 600ms ease;
+    -o-transition: all 600ms ease;
+    transition: all 600ms ease;
 }
 .tile {
     height: 300px;
@@ -72,10 +92,10 @@ title {
 }
 .blurbTitle {
     position:absolute;
-    border-radius: 5px 5px 5px 5px;
     left:0;
     top:0;
-    color: #AAA;
+    /*color: #AAA;*/
+    color: #fff;
     width: 275px;
     height: 275px;
     line-height: 200px;
@@ -86,37 +106,8 @@ title {
     -o-transition: all 600ms ease;
     transition: all 600ms ease;
 }
-.tileText:hover .blurb {
-    visibility: visible;
-    -webkit-transition: all 400ms ease;
-    -moz-transition: all 400ms ease;
-    -ms-transition: all 400ms ease;
-    -o-transition: all 400ms ease;
-    transition: all 400ms ease;
-    user-select: none;
-    -moz-user-select: none;
-    -ms-user-select:none;
-    -webkit-user-select:none;
-}
-.tileText:hover .blurbTitle {
-    line-height: 100px;
-    -webkit-transition: all 600ms ease;
-    -moz-transition: all 600ms ease;
-    -ms-transition: all 600ms ease;
-    -o-transition: all 600ms ease;
-    transition: all 600ms ease;
-}
-.tileText:hover {
-    /*background-color: #aed9d1; DARK COLOR*/
-    background-image:none;
-    background-color:#a63737;
-    -webkit-transition: all 400ms ease;
-    -moz-transition: all 400ms ease;
-    -ms-transition: all 400ms ease;
-    -o-transition: all 400ms ease;
-    transition: all 400ms ease;
-}
 .blurb {
+    visibility: hidden;
     padding-top: 70px;
     padding-left: 30px;
     padding-right: 30px;
@@ -125,15 +116,37 @@ title {
     font-size:16px;
     width: 275px;
     height: 275px;
-    visibility: hidden;
     user-select: none;
     -moz-user-select: none;
     -ms-user-select:none;
     -webkit-user-select:none;
     -o-user-select:none;
-    -webkit-transition: all 400ms ease;
-    -moz-transition: all 400ms ease;
-    -ms-transition: all 400ms ease;
-    -o-transition: all 400ms ease;
-    transition: all 400ms ease;
+    -webkit-transition: all 100ms ease;
+    -moz-transition: all 100ms ease;
+    -ms-transition: all 100ms ease;
+    -o-transition: all 100ms ease;
+    transition: all 100ms ease;
 }
+.tileText:hover .blurb {
+    visibility: visible;
+    -webkit-transition: all 600ms ease;
+    -moz-transition: all 600ms ease;
+    -ms-transition: all 600ms ease;
+    -o-transition: all 600ms ease;
+    transition: all 600ms ease;
+    user-select: none;
+    -moz-user-select: none;
+    -ms-user-select:none;
+    -webkit-user-select:none;
+}
+.tileText:hover .blurbTitle {
+    line-height: 100px;
+    background-color: #111;
+    color:#a63737;
+    -webkit-transition: all 600ms ease;
+    -moz-transition: all 600ms ease;
+    -ms-transition: all 600ms ease;
+    -o-transition: all 600ms ease;
+    transition: all 600ms ease;
+}
+/*THE RED: #a63737;*/

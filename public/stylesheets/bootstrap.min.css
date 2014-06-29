@@ -2863,13 +2863,13 @@ a.list-group-item.active>.badge, .nav-pills>.active>a>.badge {
     background-color:#a63737;
     text-align: center;
 }
-.jumbotron2 {
+/*.jumbotron2 {
     width: 100%;
     padding:30px;
     color:inherit;
     background-color:#aed9d1;
     text-align: center;
-}
+}*/
 .jumbotron h1, .jumbotron .h1 {
     color: white;
 }
