@@ -1,5 +1,5 @@
 * {
-    /*font-family: !important;*/
+    font-family:'ASAP' !important;
 }
 body {
     background-image:url("../images/subtle_white_feathers.png");
@@ -90,6 +90,15 @@ title {
     -o-transition: all 600ms ease;
     transition: all 600ms ease;
 }
+@media (max-width: 480px) {
+    .blurb {
+        visibility: visible !important;
+    }
+    .blurbTitle {
+        color:#a63737 !important;
+        line-height: 100px !important;
+    }
+}
 .blurbTitle {
     position:absolute;
     left:0;
@@ -112,7 +121,7 @@ title {
     padding-left: 30px;
     padding-right: 30px;
     position:absolute;
-    color: #BBB;
+    color: #CCC;
     font-size:16px;
     width: 275px;
     height: 275px;
