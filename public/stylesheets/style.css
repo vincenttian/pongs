@@ -15,6 +15,26 @@ title {
     margin-left: auto;
     margin-right: auto;
 }
+.logo {
+    width: 60%;
+}
+.logoContainer {
+    width: 100%;
+    padding:30px;
+    color:inherit;
+    /*background-image: url(../images/brushed-dark.png);*/
+    /*background-color:#a63737;*/
+    text-align: center;
+    background-color: #ddd;
+}
+.jumbotron2 {
+    width: 100%;
+    padding:30px;
+    color:inherit;
+    /*background-color:#aed9d1; LIGHT BLUE*/
+    background-color:#a63737;
+    text-align: center;
+}
 .tile {
     height: 300px;
     position: relative;
@@ -40,27 +60,33 @@ title {
     /*padding-top: 10px;*/
     position: relative;
     /*background-color: #ffcb8c;*/
-    background-color: #ffe2bf;
+    /*background-color: #d3ebe3; LIGHT LIGHT BLUE*/
+    /*background-color: #444;*/
+    background-image:url("../images/black-grid.png");
     text-align: center;
+    -webkit-transition: all 600ms ease;
+    -moz-transition: all 600ms ease;
+    -ms-transition: all 600ms ease;
+    -o-transition: all 600ms ease;
+    transition: all 600ms ease;
 }
 .blurbTitle {
     position:absolute;
     border-radius: 5px 5px 5px 5px;
     left:0;
     top:0;
-    color: white;
+    color: #AAA;
     width: 275px;
     height: 275px;
     line-height: 200px;
     font-size: 150%;
-    -webkit-transition: all 400ms ease;
-    -moz-transition: all 400ms ease;
-    -ms-transition: all 400ms ease;
-    -o-transition: all 400ms ease;
-    transition: all 400ms ease;
+    -webkit-transition: all 600ms ease;
+    -moz-transition: all 600ms ease;
+    -ms-transition: all 600ms ease;
+    -o-transition: all 600ms ease;
+    transition: all 600ms ease;
 }
 .tileText:hover .blurb {
-    color: white;
     visibility: visible;
     -webkit-transition: all 400ms ease;
     -moz-transition: all 400ms ease;
@@ -74,24 +100,32 @@ title {
 }
 .tileText:hover .blurbTitle {
     line-height: 100px;
+    -webkit-transition: all 600ms ease;
+    -moz-transition: all 600ms ease;
+    -ms-transition: all 600ms ease;
+    -o-transition: all 600ms ease;
+    transition: all 600ms ease;
+}
+.tileText:hover {
+    /*background-color: #aed9d1; DARK COLOR*/
+    background-image:none;
+    background-color:#a63737;
     -webkit-transition: all 400ms ease;
     -moz-transition: all 400ms ease;
     -ms-transition: all 400ms ease;
     -o-transition: all 400ms ease;
     transition: all 400ms ease;
 }
-.tileText:hover {
-    background-color: #ffcb8c;
-}
 .blurb {
     padding-top: 70px;
     padding-left: 30px;
     padding-right: 30px;
     position:absolute;
-    color: rgba(0, 0, 0, 0);
+    color: #BBB;
     font-size:16px;
     width: 275px;
     height: 275px;
+    visibility: hidden;
     user-select: none;
     -moz-user-select: none;
     -ms-user-select:none;
@@ -102,5 +136,4 @@ title {
     -ms-transition: all 400ms ease;
     -o-transition: all 400ms ease;
     transition: all 400ms ease;
-    visibility: hidden;
 }
