@@ -1,91 +1,101 @@
 <!-- views/profile.ejs -->
 <!doctype html>
 <html>
-<head>
-	<title>Pongs</title>
-<!-- 	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> -->
-	<link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="stylesheets/flipclock.css">
-    <link rel="stylesheet" href="/stylesheets/style.css" >
-    <script src="javascripts/flipclock.min.js"></script>
-	<style>
-		body 		{ padding-top:80px; word-wrap:break-word; }
-	</style>
-	<link href='http://fonts.googleapis.com/css?family=Asap:400,700' rel='stylesheet' type='text/css'>
-</head>
 <body>
 	<div class="container">
-		<div class="page-header text-center">
-			<h1><span class="fa fa-anchor"></span> Profile Page</h1>
-			<a href="/logout" class="btn btn-default btn-sm">Logout</a>
-		</div>
-		<ul class="nav nav-tabs">
-		    <li class="active"><a href="/profile">Today</a></li>
-		    <li><a href="/history">History</a></li>
-		    <li><a href="/user_profile">Profile</a></li>
-		</ul>
 		<div class="row">
-			<!-- LOCAL INFORMATION -->
-			Time until next ping: <div class="clock"></div>
-			<div class="col-sm-6">
-				<div class="well">
-					<h3><span class="fa fa-user"></span> Today's Ping</h3>
-
-					<p> New matches are made daily at 10am, 4pm, and 10pm</p>
-
-				    <!-- <a href="/oauth/linkedin">Update data from LinkedIn</a> -->
-						<p>
-							<br>
-							<img class="profile-pic" src=<%= user.picture %>><br>
-							<strong>Pings:</strong>: <div id="money"> <%= user.money %> Skips </div><div id="no_money"></div><br>
-							<strong>Name</strong>: <%= user.linkedin_name %><br>
-							<strong>Location</strong>: <%= user.location %><br>
-							<a href=<%= user.linkedin_url %> target="blank">LinkedIn Profile</a><br>
-							<strong>Industry</strong>: <%= user.industry %><br>
-							<p id = "profilePositions"></p>
-							<strong>Interests</strong>: <%= user.interests %><br>
-							<p id="skills"> 
-								<strong>Skills</strong>: <%= user.skills %>
-							</p><br>
-							<p id="follow_c">
-								<strong>Companies Following</strong>: <%= user.follow_companies %><br>
-							</p>
-							<strong>People Following</strong>: <%= user.follow_people %><br>
-
-							<div id="uuid" style="visibility:hidden"><%= user._id %></div>
-
-
-<!-- 							<strong>name</strong>: <%= user.linkedin_name %><br>
-							<strong>id</strong>: <%= user._id %><br>
-							<strong>email</strong>: <%= user.linkedin_email %><br>
-							<strong>password</strong>: <%= user.local_password %><br>
-							<strong>linkedin id</strong>: <%= user.linkedin_id %><br>
-							<strong>token</strong>: <%= user.linkedin_token %><br>
-							<strong>location</strong>: <%= user.location %><br>
-							<strong>picture</strong>: <%= user.picture %><br>
-							<strong>linkedin_url</strong>: <%= user.linkedin_url %><br>
-							<strong>industry</strong>: <%= user.industry %><br>
-							<strong>positions</strong>: <%= user.positions %><br>
-							<strong>groups</strong>: <%= user.groups %><br>
-							<strong>interests</strong>: <%= user.interests %><br>
-							<strong>skills</strong>: <%= user.skills %><br>
-							<strong>courses</strong>: <%= user.courses %><br>
-							<strong>follow_companies</strong>: <%= user.follow_companies %><br>
-							<strong>follow_people</strong>: <%= user.follow_people %><br> -->
-							<!-- <strong>connections</strong>: <%= user.connections %><br> -->
-						</p>
-				</div>
+			<div class="col-sm-2 col-md-4">
+				<!-- filler -->
+			</div>		
+			<div class="col-sm-8 col-md-6">
+				<p> Time until next ping: </p>
+				<br>
+				<div class="clock"></div>
+				<p>New matches are made daily at 10am, 4pm, and 10pm</p>
+			</div>
+			<div class="col-sm-2 col-md-4">
+				<!-- filler -->
 			</div>
 		</div>
-
-		<a  onclick="skip()">Spend 1 skip to skip current match</a>
-		<br>
-		<a id="chat-button" href = "<%- loginUrl %>">Get more skips! Post about Pongs with Facebook</a> 
-		<br>
-		<a href="/twauth">Get more skips! Post about Pongs with Twitter</a>
-
+		<div class="row">
+			<div class="col-sm-5 col-md-5">
+				<!-- filler -->
+			</div>
+			<div class="col-sm-6 col-md-6">
+				<h3><span class="fa fa-user"></span> Today's Ping</h3>
+				&nbsp; &nbsp;<img class="profile-pic" src=<%= user.picture %>><br>
+			</div>
+			<div class="col-sm-3 col-md-3">
+				<!-- filler -->
+			</div>
+		</div>
+		<div class="row">
+			<!-- LOCAL INFORMATION -->
+			<div class="col-sm-2">
+				<!-- filler -->
+			</div>
+			<div class="col-sm-4">
+				<div class="well">
+					<!-- <h3><span class="fa fa-user"></span> Today's Ping</h3> -->
+					<p>
+						<br>
+						<!-- <img class="profile-pic" src=<%= user.picture %>><br> -->
+						<strong>Remaining Pings</strong>: <div id="money"> <%= user.money %> Skips </div><div id="no_money"></div><br>
+						<a href=<%= user.linkedin_url %> target="blank">LinkedIn Profile</a><br>
+						<strong>Name</strong>: <%= user.linkedin_name %><br>
+						<strong>Location</strong>: <%= user.location %><br>
+						<strong>Industry</strong>: <%= user.industry %><br>
+						<p id = "profilePositions"></p>
+						<a  onclick="skip()">Spend 1 skip to ping another person!</a>
+						<!-- <strong>Interests</strong>: <%= user.interests %><br>
+						<p id="skills"> 
+							<strong>Skills</strong>: <%= user.skills %>
+						</p><br>
+						<p id="follow_c">
+							<strong>Companies Following</strong>: <%= user.follow_companies %><br>
+						</p>
+						<strong>People Following</strong>: <%= user.follow_people %><br>
+						<div id="uuid" style="visibility:hidden"><%= user._id %></div> -->
+					</p>
+				</div>
+			</div>
+			<div class="col-sm-3">
+				<br><br><br><br><br>
+				<strong>Interests</strong>: <%= user.interests %><br>
+				<p id="skills"> 
+					<strong>Skills</strong>: <%= user.skills %>
+				</p>
+				<p id="follow_c">
+					<strong>Companies Following</strong>: <%= user.follow_companies %><br>
+				</p>
+				<!-- <strong>People Following</strong>: <%= user.follow_people %><br> -->
+				<div id="uuid" style="visibility:hidden"><%= user._id %></div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<!-- filler -->
+		</div>		
+		<div class="col-md-3">
+			&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+			&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+			<a id="chat-button" href = "<%- loginUrl %>">
+			<img src="images/fb.png" height="50" width="50">
+			<br>
+			Get more skips! Post about Pongs with Facebook</a> 
+		</div>		
+		<div class="col-md-3">
+			&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+			&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+			<a href="/twauth">
+			<img src="images/twitter.png" height="50" width="50">
+			<br>
+			Get more skips! Post about Pongs with Twitter</a>
+		</div>
+		<div class="col-sm-4">
+			<!-- filler -->
+		</div>
 	</div>
 </body>
 <script> 
