@@ -270,7 +270,6 @@ module.exports = function(app, passport) {
 
     // HOME PAGE (with login links) 
     app.get('/', function(req, res) {
-        console.log(req.user);
         res.render('index.ejs', {
             layout: false
         }); // load the index.ejs file
@@ -334,7 +333,6 @@ module.exports = function(app, passport) {
     app.get('/edit_profile', isLoggedIn, function(req, res) {
         res.render('edit_profile.ejs', {
             user: req.user,
-            layout: 'edit_profile',
             str_user: JSON.stringify(req.user)
         });
     });
