@@ -77,10 +77,10 @@ mongo.Db.connect(mongoUri, function(err, db) {
 });
 
 // Development
-mongoose.connect("mongodb://localhost:27017/test");
-var MongoClient = require('mongodb').MongoClient;
-MongoClient.connect("mongodb://localhost:27017/test", function(err, db) {
-    if (!err) {
-        console.log("MongoDB is connected");
-    }
-});
+// mongoose.connect("mongodb://localhost:27017/test");
+// var MongoClient = require('mongodb').MongoClient;
+// MongoClient.connect("mongodb://localhost:27017/test", function(err, db) {
+//     if (!err) {
+//         console.log("MongoDB is connected");
+//     }
+// });
