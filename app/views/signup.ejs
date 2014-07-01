@@ -15,7 +15,7 @@
 		<div class="jumbotron2">
 <!-- 			<div class="halfButton" id="loginButton" onClick="loginPageOn();">Log In</div>
 	<div class="halfButton" id="signupButton" onClick="signupPageOn()">Sign Up</div> -->
-	<a class="halfButton" id="signupButton" href="/signup">Sign Up</a>
+	<div class="fullTitle" id="signupButton" href="/signup">Sign Up</div>
 	<br style="clear:both;"/>
 </div>
 
@@ -30,8 +30,8 @@
 		<div class="alert alert-danger"><%= message %></div>
 	<% } %> -->
 
-	<form action="/signup" method="post">
-		<div class="form-group">
+	<form class="formDisplay" action="/signup" method="post">
+		<div class="form-group"`>
 			<label>LinkedIn Email (Must be your primary email for your LinkedIn profile)</label>
 			<input type="email" class="form-control" name="email">
 		</div>
