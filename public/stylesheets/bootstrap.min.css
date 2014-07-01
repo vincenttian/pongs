@@ -102,9 +102,9 @@ button {
 button, select {
     text-transform:none
 }
-button, html input[type="button"], input[type="reset"], input[type="submit"] {
+/*button, html input[type="button"], input[type="reset"], input[type="submit"] {
     -webkit-appearance:button;
-    cursor:pointer
+    cursor:pointer*/
 }
 button[disabled], html input[disabled] {
     cursor:default
@@ -1146,10 +1146,10 @@ label {
     margin-bottom:5px;
     font-weight:bold
 }
-input[type="search"] {
+/*input[type="search"] {
     -webkit-box-sizing:border-box;
     -moz-box-sizing:border-box;
-    box-sizing:border-box
+    box-sizing:border-box*/
 }
 input[type="radio"], input[type="checkbox"] {
     margin:4px 0 0;
@@ -1186,21 +1186,23 @@ output {
     font-size:14px;
     line-height:1.42857143;
     color:#555;
-    background-color:#fff;
-    background-image:none;
-    border:1px solid #ccc;
-    border-radius:4px;
-    -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    -webkit-transition:border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    -o-transition:border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-    transition:border-color ease-in-out .15s, box-shadow ease-in-out .15s
+    background-color:transparent;
+    /*background-image:none;*/
+    border: none;
+    border-bottom: 1px solid #ccc;
+    /*border:1px solid #ccc;*/
+    /*border-radius:4px;*/
+    /*-webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075);*/
+    /*box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075);*/
+    /*-webkit-transition:border-color ease-in-out .15s, box-shadow ease-in-out .15s;*/
+    /*-o-transition:border-color ease-in-out .15s, box-shadow ease-in-out .15s;*/
+    /*transition:border-color ease-in-out .15s, box-shadow ease-in-out .15s*/
 }
 .form-control:focus {
-    border-color:#66afe9;
+    /*    border-color:#66afe9;
     outline:0;
     -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6);
-    box-shadow:inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6)
+    box-shadow:inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6)*/
 }
 .form-control::-moz-placeholder {
     color:#777;
@@ -1350,11 +1352,6 @@ textarea.input-lg, select[multiple].input-lg {
     -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075);
     box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075)
 }
-.has-success .form-control:focus {
-    border-color:#2b542c;
-    -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #67b168;
-    box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #67b168
-}
 .has-success .input-group-addon {
     color:#3c763d;
     border-color:#3c763d;
@@ -1371,11 +1368,6 @@ textarea.input-lg, select[multiple].input-lg {
     -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075);
     box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075)
 }
-.has-warning .form-control:focus {
-    border-color:#66512c;
-    -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #c0a16b;
-    box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #c0a16b
-}
 .has-warning .input-group-addon {
     color:#8a6d3b;
     border-color:#8a6d3b;
@@ -1391,11 +1383,6 @@ textarea.input-lg, select[multiple].input-lg {
     border-color:#a94442;
     -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075);
     box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075)
-}
-.has-error .form-control:focus {
-    border-color:#843534;
-    -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483;
-    box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #ce8483
 }
 .has-error .input-group-addon {
     color:#a94442;
@@ -1508,11 +1495,6 @@ textarea.input-lg, select[multiple].input-lg {
     -ms-user-select:none;
     user-select:none
 }
-.btn:focus, .btn:active:focus, .btn.active:focus {
-    outline:thin dotted;
-    outline:5px auto -webkit-focus-ring-color;
-    outline-offset:-2px
-}
 .btn:hover, .btn:focus {
     color:#333;
     text-decoration:none
@@ -1535,11 +1517,6 @@ textarea.input-lg, select[multiple].input-lg {
     color:#333;
     background-color:#fff;
     border-color:#ccc
-}
-.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open>.dropdown-toggle.btn-default {
-    color:#333;
-    background-color:#e6e6e6;
-    border-color:#adadad
 }
 .btn-default:active, .btn-default.active, .open>.dropdown-toggle.btn-default {
     background-image:none
@@ -1589,6 +1566,7 @@ textarea.input-lg, select[multiple].input-lg {
 .btn-success.disabled, .btn-success[disabled], fieldset[disabled] .btn-success, .btn-success.disabled:hover, .btn-success[disabled]:hover, fieldset[disabled] .btn-success:hover, .btn-success.disabled:focus, .btn-success[disabled]:focus, fieldset[disabled] .btn-success:focus, .btn-success.disabled:active, .btn-success[disabled]:active, fieldset[disabled] .btn-success:active, .btn-success.disabled.active, .btn-success[disabled].active, fieldset[disabled] .btn-success.active {
     background-color:#aad4c3;
     border-color:#99cbb7
+    
 }
 .btn-success .badge {
     color:#aad4c3;

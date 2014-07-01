@@ -1,6 +1,12 @@
 * {
     font-family:'ASAP' !important;
 }
+*.focus {
+    outline: 0 !important;
+}
+textarea, input {
+    outline: none;
+}
 body {
     background-image:url("../images/subtle_white_feathers.png");
     background-repeat: repeat;
