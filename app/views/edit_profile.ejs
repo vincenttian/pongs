@@ -4,31 +4,41 @@
 <body>
 	<div class="container">
 		<div class="row">
-			<!-- LOCAL INFORMATION -->
-			<div class="col-sm-6">
+			<div class="col-sm-5 col-md-5">
+				<!-- filler -->
+			</div>
+			<div class="col-sm-6 col-md-6">
+				&nbsp; &nbsp;<img class="profile-pic" src=<%= user.picture %>><br>
+			</div>
+			<div class="col-sm-3 col-md-3">
+				<!-- filler -->
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">
+				<!-- filler -->
+			</div>
+			<div class="col-sm-4">
 				<div class="well">
 					<h3>Edit Profile</h3>
 						<p>
-							<form action="/edit_profile" method="post">
-						  		<input name="id" value=<%= user.linkedin_id %> style="visibility:hidden;"><br>
-						  		<strong>Name</strong>: <input id="edit_name" type="text" name="name" value=<%= user.linkedin_name %>><br>
-						  		<strong>Location</strong>: <input type="text" name="location" id="edit_location" style="width: 200px;"><br>
-								<img src=<%= user.picture %>><br>
-								<a href=<%= user.linkedin_url %> target="blank">LinkedIn Profile</a><br>
-						  		<strong>Industry</strong>: <input type="text" id="edit_industry" name="industry"><br>
-								<strong>Tinder Meets LinkedIn Currency</strong>: <%= user.money %> Skips<br>
-								<p id = "profilePositions"></p>
-						  		<strong>Interests</strong>: 
-						  		<textarea id="edit_interests" name="interests"> </textarea> <br>
-						  		<strong>Skills</strong>:
-						  		<textarea id="edit_skills" name="skills"> </textarea><br>
-								<strong>Companies Following</strong>: <%= user.follow_companies %><br>
-								<strong>People Following</strong>: <%= user.follow_people %><br>
-								<button type="submit" class="btn btn-warning btn-lg" onclick="edit();">Finish Editing</button>
-								<div id="id" style="visibility:hidden;"><%= user._id %></div>
-							</form>
+							<a href=<%= user.linkedin_url %> target="blank">LinkedIn Profile</a><br>
+							<strong>Name</strong>: <input id="edit_name" type="text" name="name" value=<%= user.linkedin_name %>><br>
+							<strong>Location</strong>: <input type="text" name="location" id="edit_location" style="width: 200px;"><br>
+							<strong>Industry</strong>: <input type="text" id="edit_industry" name="industry"><br>
+							<strong>Pings</strong>: <%= user.money %> Skips<br>
+							<p id = "profilePositions"></p>
 						</p>
 				</div>
+			</div>
+			<div class="col-sm-3">
+				<br><br><br>
+				<strong>Interests</strong>: <textarea id="edit_interests" name="interests" rows="4" cols="40"> </textarea> <br>
+				<strong>Skills</strong>: <textarea id="edit_skills" name="skills" rows="7" cols="40"> </textarea><br>
+				<p id="follow_c">
+					<strong>Companies Following</strong>: <%= user.follow_companies %><br>
+				</p>
+				<div id="uuid" style="visibility:hidden"><%= user._id %></div>
 			</div>
 		</div>
 	</div>
@@ -44,7 +54,7 @@ for (var i = 0; i < posObject.length; i += 1) {
     if (posObject[i]['is_current']) {
         currPosition = "<strong>Current Position: </strong>" + posObject[i]['title'] + " at " + posObject[i]['company'] + "<br>";
     } else {
-        pastPositions += posObject[i]['company'] + " at " + posObject[i]['title'] + "<br>";
+        pastPositions += posObject[i]['title'] + " at " + posObject[i]['company'] + "<br>";
     }
 }
 document.getElementById("profilePositions").innerHTML = currPosition + pastPositions;
@@ -54,6 +64,10 @@ var industry = x.industry;
 var skills = x.skills;
 var interests = x.interests;
 var loc = x.location;
+skills = skills.replace(/,/g, ', ');
+var follow_c = $('#follow_c').html();
+$('#follow_c').html(follow_c.replace(/,/g, ', '));
+
 $('#edit_name').val(name);
 $('#edit_industry').val(industry);
 $('#edit_skills').val(skills);
