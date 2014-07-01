@@ -297,32 +297,6 @@ module.exports = function(app, passport) {
         }); // load the index.ejs file
     });
 
-    //JORDEEN WROTE THIS HELP FIXME
-    // app.post('/', passport.authenticate('local-login', {
-    //     successRedirect: '/profile',
-    //     failureRedirect: '/',
-    //     failureFlash: true,
-    //     layout: false
-    // }));
-    // console.log('Trying to get isLogin ' + req.body["isLogin"]);
-    // if (req.body["isLogin"]) {
-    //     console.log("I'M LOGGED IN");
-    //     passport.authenticate('local-login', {
-    //         successRedirect: '/profile',
-    //         failureRedirect: '/',
-    //         failureFlash: true,
-    //         layout: false
-    //     });
-    // } else {
-    //     passport.authenticate('local-signup', {
-    //         successRedirect: '/linkedin',
-    //         failureRedirect: '/',
-    //         failureFlash: true,
-    //         layout: false
-    //     });
-    // }
-    // });
-
     // LOGIN: show the login form
     app.get('/login', function(req, res) {
         // render the page and pass in any flash data if it exists
