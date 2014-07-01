@@ -75,50 +75,22 @@ var signupButton = document.getElementById("signupButton");
 var isLogin = document.getElementById("isLogin");
 var tiles = document.getElementById("tileContainer");
 
-function loginPageOn() {
-	console.log('called function');
-	tiles.style.display = "none";
-	isLogin.value = "true";
-	loginForm.style.display = "inherit";
-	signupButton.style.display = "none";
-	loginButton.style.width = "100%";
-}
-
-function signupPageOn() {
-	tiles.style.display = "none";
-	isLogin.value = "false";
-	signupForm.style.display = "inherit";
-	loginButton.style.display = "none";
-	signupButton.style.width = "100%";
-}
-
 function transition(newPage) {
 	tiles.style.display = "none";
-	isLogin.value = "false";
 	if (newPage == 'signup') {
+
 		signupForm.style.display = "inherit";
 		loginButton.style.display = "none";
 		signupButton.style.width = "100%";
 	} else {
-			loginForm.style.display = "inherit";
-	signupButton.style.display = "none";
-	loginButton.style.width = "100%";
+		loginForm.style.display = "inherit";
+		signupButton.style.display = "none";
+		loginButton.style.width = "100%";
 	}
 	setTimeout(function(){
 		window.location = newPage;
 	}, 1000);
 }
-
-// function transition(newPage) {
-// 	tiles.style.display = "none";
-// 	isLogin.value = "false";
-// 	signupForm.style.display = "inherit";
-// 	loginButton.style.display = "none";
-// 	signupButton.style.width = "100%";
-// 	setTimeout(function(){
-// 		window.location = 'signup';
-// 	}, 1000);
-// }
 
 </script>
 
