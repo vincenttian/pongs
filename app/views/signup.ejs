@@ -13,39 +13,25 @@
 			<img class="logo" src="../images/Pongs.png">
 		</div>
 		<div class="jumbotron2">
-<!-- 			<div class="halfButton" id="loginButton" onClick="loginPageOn();">Log In</div>
-	<div class="halfButton" id="signupButton" onClick="signupPageOn()">Sign Up</div> -->
-	<div class="fullTitle" id="signupButton" href="/signup">Sign Up</div>
+	<div class="fullTitle" id="signupButton">Sign Up</div>
 	<br style="clear:both;"/>
 </div>
+		<form class="formDisplay" action="/signup" method="post">
+			<div class="form-group"`>
+				<label>LinkedIn Email (Must be your primary email for your LinkedIn profile)</label>
+				<input type="email" class="form-control" name="email">
+			</div>
+			<div class="form-group">
+				<label>Password</label>
+				<input type="password" class="form-control" name="password">
+			</div>
+			<button type="submit" class="btn btn-lg">Signup</button>
+		</form>
 
-<!-- <div class="col-sm-6 col-sm-offset-3">
-	<div class="logoContainer">
-		<img class="logo" src="../images/Pongs.png">
+		<p>Already have an account? <a href="/login">Login</a></p>
+		<p>Or go <a href="/">home</a>.</p>
+
 	</div>
-	<h1><span class="fa fa-sign-in"></span> Signup</h1>
-
-	<!-- show any messages that come back with authentication
-	<% if (message.length > 0) { %>
-		<div class="alert alert-danger"><%= message %></div>
-	<% } %> -->
-
-	<form class="formDisplay" action="/signup" method="post">
-		<div class="form-group"`>
-			<label>LinkedIn Email (Must be your primary email for your LinkedIn profile)</label>
-			<input type="email" class="form-control" name="email">
-		</div>
-		<div class="form-group">
-			<label>Password</label>
-			<input type="password" class="form-control" name="password">
-		</div>
-		<button type="submit" class="btn btn-lg">Signup</button>
-	</form>
-
-	<p>Already have an account? <a href="/login">Login</a></p>
-	<p>Or go <a href="/">home</a>.</p>
-
-</div>
 
 </div>
 </body>
