@@ -3,38 +3,34 @@
 <html>
 <head>
     <title>Pongs</title>
-<!--    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="/stylesheets/bootstrap.min.css">
     <link rel="stylesheet" href="/stylesheets/style.css" >
     <link href='http://fonts.googleapis.com/css?family=Asap:400,700' rel='stylesheet' type='text/css'></head>
+</head>
 <body>
     <div class="container">
-        <div class="col-sm-6 col-sm-offset-3">
-            <h1>
-                <span class="fa fa-sign-in"></span>Login</h1>
-            <!-- show any messages that come back with authentication -->
-            <% if (message.length>0) { %>
-                <div class="alert alert-danger">
-                    <%=message %>
-                </div>
-                <% } %>
-                    <!-- LOGIN FORM -->
-                    <form action="/login" method="post">
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="text" class="form-control" name="email">
-                        </div>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="password" class="form-control" name="password">
-                        </div>
-                        <button type="submit" class="btn btn-success btn-lg">Login</button>
-                    </form>
-                    <hr>
-                    <p>Need an account? <a href="/signup">Signup</a>
-                    </p>
-                    <p>Or go <a href="/">home</a>.</p>
+        <div class="logoContainer">
+            <img class="logo" src="../images/Pongs.png">
         </div>
+        <div class="jumbotron2">
+            <div class="fullTitle" id="loginButton">Log In</div>
+            <br style="clear:both;"/>
+        </div>
+        <form class="formDisplay" action="/login" method="post">
+            <div class="form-group"`>
+                <label>LinkedIn Email (Must be your primary email for your LinkedIn profile)</label>
+                <input type="email" class="form-control" name="email">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" name="password">
+            </div>
+            <button type="submit" class="btn btn-lg">Log In</button>
+        </form>
+
+        <p>Already have an account? <a href="/login">Login</a></p>
+        <p>Or go <a href="/">home</a>.</p>
+
     </div>
 </body>
 </html>
