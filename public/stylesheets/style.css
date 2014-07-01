@@ -1,5 +1,5 @@
 * {
-    /*font-family: !important;*/
+    font-family:'ASAP' !important;
 }
 body {
     background-image:url("../images/subtle_white_feathers.png");
@@ -22,8 +22,6 @@ title {
     width: 100%;
     padding:30px;
     color:inherit;
-    /*background-image: url(../images/brushed-dark.png);*/
-    /*background-color:#a63737;*/
     text-align: center;
     background-color: #ddd;
 }
@@ -31,7 +29,6 @@ title {
     width: 100%;
     color:inherit;
     height: 75px;
-    /*background-color:#aed9d1; LIGHT BLUE*/
     background-color:#a63737;
     text-align: center;
 }
@@ -41,19 +38,26 @@ title {
     font-size: 200%;
 }
 .halfButton {
+    color: white;
+    font-size: 200%;
     /*color: white;*/
-    padding-top: 20px;
+    padding-top: 15px;
     width: 50%;
     height: inherit;
     float: left;
-}
-.halfButton:hover {
-    background-color: #c44c4c;
     -webkit-transition: all 600ms ease;
     -moz-transition: all 600ms ease;
     -ms-transition: all 600ms ease;
     -o-transition: all 600ms ease;
     transition: all 600ms ease;
+}
+.halfButton:hover {
+    background-color: #c44c4c;
+    -webkit-transition: all 800ms ease;
+    -moz-transition: all 800ms ease;
+    -ms-transition: all 800ms ease;
+    -o-transition: all 800ms ease;
+    transition: all 800ms ease;
 }
 .tile {
     height: 300px;
@@ -66,7 +70,7 @@ title {
     margin-left: auto;
     margin-right: auto;
 }
-.tileContainer {
+#tileContainer {
     padding-top: 30px;
     overflow: hidden;
     max-width: 975px;
@@ -77,11 +81,7 @@ title {
 .tileText {
     height: 275px;
     width: 275px;
-    /*padding-top: 10px;*/
     position: relative;
-    /*background-color: #ffcb8c;*/
-    /*background-color: #d3ebe3; LIGHT LIGHT BLUE*/
-    /*background-color: #444;*/
     background-image:url("../images/black-grid.png");
     text-align: center;
     -webkit-transition: all 600ms ease;
@@ -89,6 +89,15 @@ title {
     -ms-transition: all 600ms ease;
     -o-transition: all 600ms ease;
     transition: all 600ms ease;
+}
+@media (max-width: 480px) {
+    .blurb {
+        visibility: visible !important;
+    }
+    .blurbTitle {
+        color:#a63737 !important;
+        line-height: 100px !important;
+    }
 }
 .blurbTitle {
     position:absolute;
@@ -112,7 +121,7 @@ title {
     padding-left: 30px;
     padding-right: 30px;
     position:absolute;
-    color: #BBB;
+    color: #CCC;
     font-size:16px;
     width: 275px;
     height: 275px;
@@ -149,4 +158,22 @@ title {
     -o-transition: all 600ms ease;
     transition: all 600ms ease;
 }
+.form {
+    display: none;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 3%;
+}
+/* THE LOGIN PAGE */
+
+/* #loginForm {
+     display: none;
+ }
+ #signupForm {
+     display:none;
+ }*/
+
 /*THE RED: #a63737;*/
+
+/* LIGHTER RED: #c44c4c*/
