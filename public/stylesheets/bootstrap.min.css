@@ -246,8 +246,8 @@ a {
     text-decoration:none
 }
 a:hover, a:focus {
-    color:#345e50;
-    text-decoration:underline
+    color:#a63737;
+    text-decoration:none;
 }
 a:focus {
     outline:thin dotted;
@@ -2870,7 +2870,7 @@ a.list-group-item.active>.badge, .nav-pills>.active>a>.badge {
     background-color:#aed9d1;
     text-align: center;
 }*/
-.jumbotron h1, .jumbotron .h1 {
+ .jumbotron h1, .jumbotron .h1 {
     color: white;
 }
 .jumbotron p {

@@ -297,6 +297,32 @@ module.exports = function(app, passport) {
         }); // load the index.ejs file
     });
 
+    //JORDEEN WROTE THIS HELP FIXME
+    app.post('/', passport.authenticate('local-login', {
+        successRedirect: '/profile',
+        failureRedirect: '/',
+        failureFlash: true,
+        langout: false
+    }));
+    // console.log('Trying to get isLogin ' + req.body["isLogin"]);
+    // if (req.body["isLogin"]) {
+    //     console.log("I'M LOGGED IN");
+    //     passport.authenticate('local-login', {
+    //         successRedirect: '/profile',
+    //         failureRedirect: '/',
+    //         failureFlash: true,
+    //         layout: false
+    //     });
+    // } else {
+    //     passport.authenticate('local-signup', {
+    //         successRedirect: '/linkedin',
+    //         failureRedirect: '/',
+    //         failureFlash: true,
+    //         layout: false
+    //     });
+    // }
+    // });
+
     // LOGIN: show the login form
     app.get('/login', function(req, res) {
         // render the page and pass in any flash data if it exists
@@ -357,8 +383,6 @@ module.exports = function(app, passport) {
     // PROFILE SECTION 
     app.get('/profile', isLoggedIn, function(req, res) {
         console.log('implement algo here');
-
-
         // finds all people that are in the same industry and location as user
         // allPeople.find({
         //     location: req.user.location,
@@ -448,7 +472,7 @@ module.exports = function(app, passport) {
             function(data) {
                 console.log('successfully posted to twitter!');
             });
-        req.flash('info', "You've posted to your Twitter page!")
+        req.flash('info', "You've posted to your Twitter page!");
         res.redirect('/profile');
     });
 
@@ -464,7 +488,7 @@ module.exports = function(app, passport) {
                 console.log('Post Id: ' + r.id);
             }
         });
-        req.flash('info', "You've posted to your Facebook page!")
+        req.flash('info', "You've posted to your Facebook page!");
         res.redirect('/profile');
     });
 };
