@@ -1,7 +1,7 @@
 // Dev Config
-// var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://localhost:3000/oauth/linkedin/callback');
+var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://localhost:3000/oauth/linkedin/callback');
 // Prod Config
-var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://pongs.herokuapp.com/oauth/linkedin/callback');
+// var Linkedin = require('node-linkedin')('452p27539u5f', '3q1iiaeQph2wRH4M', 'http://pongs.herokuapp.com/oauth/linkedin/callback');
 var linkedin;
 
 // SOCIAL MEDIA
@@ -298,12 +298,12 @@ module.exports = function(app, passport) {
     });
 
     //JORDEEN WROTE THIS HELP FIXME
-    app.post('/', passport.authenticate('local-login', {
-        successRedirect: '/profile',
-        failureRedirect: '/',
-        failureFlash: true,
-        langout: false
-    }));
+    // app.post('/', passport.authenticate('local-login', {
+    //     successRedirect: '/profile',
+    //     failureRedirect: '/',
+    //     failureFlash: true,
+    //     layout: false
+    // }));
     // console.log('Trying to get isLogin ' + req.body["isLogin"]);
     // if (req.body["isLogin"]) {
     //     console.log("I'M LOGGED IN");

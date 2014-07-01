@@ -158,13 +158,22 @@ title {
     -o-transition: all 600ms ease;
     transition: all 600ms ease;
 }
-/* THE LOGIN PAGE */
- #loginForm {
+.form {
     display: none;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 3%;
 }
-#signupForm {
-    display:none;
-}
+/* THE LOGIN PAGE */
+
+/* #loginForm {
+     display: none;
+ }
+ #signupForm {
+     display:none;
+ }*/
+
 /*THE RED: #a63737;*/
 
 /* LIGHTER RED: #c44c4c*/

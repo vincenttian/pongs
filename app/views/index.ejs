@@ -16,8 +16,10 @@
 			<img class="logo" src="../images/Pongs.png">
 		</div>
 		<div class="jumbotron2">
-			<div class="halfButton" id="loginButton" onClick="loginPageOn();">Log In</div>
-			<div class="halfButton" id="signupButton" onClick="signupPageOn()">Sign Up</div>
+<!-- 			<div class="halfButton" id="loginButton" onClick="loginPageOn();">Log In</div>
+			<div class="halfButton" id="signupButton" onClick="signupPageOn()">Sign Up</div> -->
+			<a class="halfButton" id="loginButton" href="/login">Log In</a>
+			<a class="halfButton" id="signupButton" href="/signup">Log In</a>
 			<br style="clear:both;"/>
 		</div>
 		<div id="tileContainer">
@@ -40,7 +42,7 @@
 				</div>
 			</div>
 		</div>
-		<form  class="form" id="loginForm" method="post">
+		<form  class="form" id="loginForm" method="post" action="/login">
 			<div class="form-group">
 				<label>LinkedIn Email (Must be your primary email for your LinkedIn profile)</label>
 				<input type="email" class="form-control" name="email">
@@ -50,7 +52,7 @@
 				<label>Password</label>
 				<input type="password" class="form-control" name="password">
 			</div>
-			<button type="submit" action="/login" class="btn btn-lg">Log In</button>
+			<button type="submit" class="btn btn-lg">Log In</button>
 		</form>
 		<form class="form" id="signupForm" method="post">
 			<div class="form-group">
@@ -67,7 +69,6 @@
 	</div>
 </body>
 <script>
-
 
 var loginForm = document.getElementById("loginForm");
 var loginButton = document.getElementById("loginButton");
@@ -89,8 +90,8 @@ function signupPageOn() {
 	tiles.style.display = "none";
 	isLogin.value = "false";
 	signupForm.style.display = "inherit";
-	signupButton.style.width = "100%";
 	loginButton.style.display = "none";
+	signupButton.style.width = "100%";
 }
 
 </script>
