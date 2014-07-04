@@ -15,14 +15,18 @@ title {
     font-weight: 700px !important;
 }
 .profile-pic {
-    margin: auto;
+    display: inline-block;
+    width: 100px;
+    vertical-align: top;
 }
 .center {
     margin-left: auto;
     margin-right: auto;
+    width: 50%;
+    text-align: center;
 }
 .logo {
-    width: 60%;
+    width: 55%;
 }
 .logoContainer {
     width: 100%;
@@ -176,6 +180,7 @@ title {
     margin-left: auto;
     margin-right: auto;
     padding-top: 3%;
+    /*background-color: #a63737;*/
 }
 .blurb {
     padding-top: 70px;
@@ -208,31 +213,81 @@ title {
     float: left;
     text-align: center;
 }
-.navbar {
-    background-color:#a63737;
+.fullForm {
+    color: #333;
+    font-size: 200%;
+    padding-top: 15px;
     width: 100%;
+    height: inherit;
+    float: left;
+    text-align: center;
 }
-.navbarElements {
+.form-control {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display:block;
+    height:63px;
+    padding:6px 12px;
+    font-size:20px;
+    line-height:1.42857143;
+    color:#777;
+    background-color: #aaa;
+    border: 1px solid #ccc;
+}
+.submit-button {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display:block;
+    text-align: center;
+    height:63px;
+    padding:15px 12px;
+    font-size:20px;
+    line-height:1.42857143;
+    color: #ddd;
+    background-image:url("../images/black-grid.png");
+    border: 1px solid #ccc;
+}
+.form-control::-moz-placeholder {
+    color:#777;
+    opacity:1
+}
+.form-control:-ms-input-placeholder {
+    color:#777
+}
+.form-control::-webkit-input-placeholder {
+    color:#777
+}
+.navbarTabs {
     background-color: #a63737;
     color: white;
+    padding-top: 15px;
     text-decoration: none;
     font-size: 200%;
     width: 33%;
     height: inherit;
     float: left;
 }
-.navbarElements:hover {
+.navbarTabs:hover {
     /*background-color: #aed9d1; DARK COLOR*/
-    background-image:none;
     background-color:#c44c4c !important;
     text-decoration: none;
-    color: white;
-    width: 33%;
     -webkit-transition: all 400ms ease;
     -moz-transition: all 400ms ease;
     -ms-transition: all 400ms ease;
     -o-transition: all 400ms ease;
     transition: all 400ms ease;
+}
+.activeTab {
+    background-color: #c44c4c !important;
+}
+.basic-info {
+    display: inline-block;
+    font-size: 200%;
+    vertical-align: top;
+}
+.basic-field {
 }
 /* THE LOGIN PAGE */
 

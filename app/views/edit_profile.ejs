@@ -24,16 +24,27 @@
 					<p>			
 						<form action="/edit_profile" method="post">
 							<a href=<%= user.linkedin_url %> target="blank">LinkedIn Profile</a><br>
+
 							<input name="id" value=<%= user.linkedin_id %> style="visibility:hidden;"><br>
+
 							<strong>Name</strong>: <input id="edit_name" type="text" name="name" value=<%= user.linkedin_name %>><br>
+
 							<strong>Location</strong>: <input type="text" name="location" id="edit_location" style="width: 200px;"><br>
+
 							<strong>Industry</strong>: <input type="text" id="edit_industry" name="industry"><br>
+
 							<strong>Tinder Meets LinkedIn Currency</strong>: <%= user.money %> Skips<br>
+
 							<p id = "profilePositions"></p>
+
 							<strong>Interests</strong>: <br>
+
 							<textarea id="edit_interests" name="interests" cols="40" rows="6"> </textarea> <br>
+
 							<strong>Skills</strong>: <br>
+
 							<textarea id="edit_skills" name="skills" cols="40" rows="7"> </textarea><br>
+							
 							<p id="follow_c">
 								<strong>Companies Following</strong>: <%= user.follow_companies %><br>
 							</p>							
