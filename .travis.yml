@@ -1,0 +1,22 @@
+language: node_js
+
+node_js:
+- 0.6
+- 0.8
+- 0.1
+
+# services:
+#   - mongodb
+
+notifications:
+  email:
+  - vincenttian16@gmail.com
+  - jordeenchang@gmail.com
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: KKWyNvaespimMMI9jy3A0JaASXFeKv91+BFrb3EcMBhR0W9Xs0APVMEpGqYK7mX5wp1OHDHpdiTok4k/rqpYY+RFu2zNjLzDn78RYUqV8XH+JNP9GSM4ikW08o6bxMzQQ6SqUBb7SW7sFq4rNZEjsCE5P0ENi0nzRSfNqtk7cHU=
+  app: pongs
+  on:
+    repo: vincenttian/pongs
