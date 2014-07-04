@@ -19,12 +19,17 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-sm-5 col-md-5">
+			<div class="col-sm-3 col-md-3">
 				<!-- filler -->
 			</div>
 			<div class="col-sm-6 col-md-6">
 				<h3><span class="fa fa-user"></span> Today's Ping</h3>
-				&nbsp; &nbsp;<img class="profile-pic" src=<%= user.picture %>><br>
+				&nbsp; &nbsp;<img class="profile-pic" src=<%= user.picture %>>
+				<div class="basic-info">
+					<strong class="basic-field">Name</strong>: <%= user.linkedin_name %><br>
+					<strong class="basic-field">Location</strong>: <%= user.location %><br>
+					<strong class="basic-field">Industry</strong>: <%= user.industry %><br>
+				</div>
 			</div>
 			<div class="col-sm-3 col-md-3">
 				<!-- filler -->
@@ -44,9 +49,6 @@
 						<strong>Remaining Pings</strong>: <div id="money"> <%= user.money %></div><div id="no_money"></div><br/>
 						<a style="cursor: pointer"  onclick="skip()">Spend 1 skip to ping another person!</a> <br/>
 						<a href=<%= user.linkedin_url %> target="blank">LinkedIn Profile</a><br>
-						<strong>Name</strong>: <%= user.linkedin_name %><br>
-						<strong>Location</strong>: <%= user.location %><br>
-						<strong>Industry</strong>: <%= user.industry %><br>
 						<p id = "profilePositions"></p>
 					</p>
 				</div>
@@ -90,6 +92,8 @@
 				</div>
 			</div>
 		</body>
+
+
 		<script> 
 		var socket = io.connect('http://localhost');
 		var positions = <%- user.positions %>;

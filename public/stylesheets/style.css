@@ -15,7 +15,9 @@ title {
     font-weight: 700px !important;
 }
 .profile-pic {
-    margin: auto;
+    display: inline-block;
+    width: 100px;
+    vertical-align: top;
 }
 .center {
     margin-left: auto;
@@ -279,6 +281,13 @@ title {
 }
 .activeTab {
     background-color: #c44c4c !important;
+}
+.basic-info {
+    display: inline-block;
+    font-size: 200%;
+    vertical-align: top;
+}
+.basic-field {
 }
 /* THE LOGIN PAGE */
 
