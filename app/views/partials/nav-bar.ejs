@@ -1,11 +1,35 @@
 <link rel="stylesheet" href="/stylesheets/style.css" >
 <img class="logo img-responsive center" src="../images/Pongs.png" style="width: 15%;">
 <div class="page-header text-center">
-  <h1><span class="fa fa-anchor"></span> Profile Page</h1>
   <a href="/logout" class="btn btn-default btn-sm">Logout</a>
 </div>
-<ul class="jumbotron2 navbar">
-    <a class="navbarElements" href="/profile">Today</a>
-    <a class="navbarElements" href="/history">History</a>
-    <a class="navbarElements" href="/user_profile">Profile</a>
-</ul>
+<div class="jumbotron2">
+    <a class="navbarTabs" href="/profile" id="profileTab" onclick="active('profile')">Today</a>
+    <a class="navbarTabs" href="/history" id="historyTab" onclick="active('history')">History</a>
+    <a class="navbarTabs" href="/user_profile" id="userTab" style="width: 34%" onclick="active('user')">Profile</a>
+</div>
+
+<script>
+
+var profileTab = document.getElementById("profileTab"); 
+var historyTab = document.getElementById("historyTab");
+var userTab = document.getElementById("userTab");
+
+function active(tab) {
+	console.log("hello");
+	profileTab.class = "navbarTabs";
+	historyTab.class = "navbarTabs";
+	userTab.class = "navbarTabs"
+	if (tab == 'profile') {
+		console.log("profile");
+		profileTab.class = "activeTab";
+	}
+	if (tab == 'history') {
+		historyTab.class = "activeTab navbarTabs"
+	}
+	if (tab == 'user') {
+		userTab.class = "activeTab navbarTabs"
+	}
+}
+
+</script> 

@@ -257,31 +257,28 @@ title {
 .form-control::-webkit-input-placeholder {
     color:#777
 }
-.navbar {
-    background-color:#a63737;
-    width: 100%;
-}
-.navbarElements {
+.navbarTabs {
     background-color: #a63737;
     color: white;
+    padding-top: 15px;
     text-decoration: none;
     font-size: 200%;
     width: 33%;
     height: inherit;
     float: left;
 }
-.navbarElements:hover {
+.navbarTabs:hover {
     /*background-color: #aed9d1; DARK COLOR*/
-    background-image:none;
     background-color:#c44c4c !important;
     text-decoration: none;
-    color: white;
-    width: 33%;
     -webkit-transition: all 400ms ease;
     -moz-transition: all 400ms ease;
     -ms-transition: all 400ms ease;
     -o-transition: all 400ms ease;
     transition: all 400ms ease;
+}
+.activeTab {
+    background-color: #c44c4c !important;
 }
 /* THE LOGIN PAGE */
 

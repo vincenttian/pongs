@@ -41,22 +41,13 @@
 					<p>
 						<br>
 						<!-- <img class="profile-pic" src=<%= user.picture %>><br> -->
-						<strong>Remaining Pings</strong>: <div id="money"> <%= user.money %> Skips </div><div id="no_money"></div><br>
+						<strong>Remaining Pings</strong>: <div id="money"> <%= user.money %></div><div id="no_money"></div><br/>
+						<a style="cursor: pointer"  onclick="skip()">Spend 1 skip to ping another person!</a> <br/>
 						<a href=<%= user.linkedin_url %> target="blank">LinkedIn Profile</a><br>
 						<strong>Name</strong>: <%= user.linkedin_name %><br>
 						<strong>Location</strong>: <%= user.location %><br>
 						<strong>Industry</strong>: <%= user.industry %><br>
 						<p id = "profilePositions"></p>
-						<a  onclick="skip()">Spend 1 skip to ping another person!</a>
-						<!-- <strong>Interests</strong>: <%= user.interests %><br>
-						<p id="skills"> 
-							<strong>Skills</strong>: <%= user.skills %>
-						</p><br>
-						<p id="follow_c">
-							<strong>Companies Following</strong>: <%= user.follow_companies %><br>
-						</p>
-						<strong>People Following</strong>: <%= user.follow_people %><br>
-						<div id="uuid" style="visibility:hidden"><%= user._id %></div> -->
 					</p>
 				</div>
 			</div>
@@ -82,37 +73,37 @@
 			&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
 			&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
 			<a id="chat-button" href = "<%- loginUrl %>">
-			<img src="images/fb.png" height="50" width="50">
-			<br>
-			Get more skips! Post about Pongs with Facebook</a> 
-		</div>		
-		<div class="col-md-3">
-			&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-			&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
-			<a href="/twauth">
-			<img src="images/twitter.png" height="50" width="50">
-			<br>
-			Get more skips! Post about Pongs with Twitter</a>
-		</div>
-		<div class="col-sm-4">
-			<!-- filler -->
-		</div>
-	</div>
-</body>
-<script> 
-    var socket = io.connect('http://localhost');
-	var positions = <%- user.positions %>;
-	positions = JSON.stringify(positions);
-    var posObject = JSON.parse(positions);
-    var currPosition = "";
-    var pastPositions = "<strong>Past Positions: </strong>";
-    for (var i = 0; i < posObject.length; i += 1) {
+				<img src="images/fb.png" height="50" width="50">
+				<br>
+				Get more skips! Post about Pongs on Facebook</a> 
+			</div>		
+			<div class="col-md-3">
+				&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+				&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+				<a href="/twauth">
+					<img src="images/twitter.png" height="50" width="50">
+					<br>
+					Get more skips! Post about Pongs on Twitter</a>
+				</div>
+				<div class="col-sm-4">
+					<!-- filler -->
+				</div>
+			</div>
+		</body>
+		<script> 
+		var socket = io.connect('http://localhost');
+		var positions = <%- user.positions %>;
+		positions = JSON.stringify(positions);
+		var posObject = JSON.parse(positions);
+		var currPosition = "";
+		var pastPositions = "<strong>Past Positions: </strong>";
+		for (var i = 0; i < posObject.length; i += 1) {
     	// console.log(posObject[i]);
-        if (posObject[i]['is_current']) {
-            currPosition = "<strong>Current Position: </strong>" + posObject[i]['title'] + " at " + posObject[i]['company'] + "<br>";
-        } else {
-            pastPositions += posObject[i]['title'] + " at " + posObject[i]['company'] + "<br>";
-        }
+    	if (posObject[i]['is_current']) {
+    		currPosition = "<strong>Current Position: </strong>" + posObject[i]['title'] + " at " + posObject[i]['company'] + "<br>";
+    	} else {
+    		pastPositions += posObject[i]['title'] + " at " + posObject[i]['company'] + "<br>";
+    	}
     }
     document.getElementById("profilePositions").innerHTML = currPosition + pastPositions;
 
@@ -128,46 +119,46 @@
     		$('#money').text($('#money').text());
     		$('#no_money').text('Sorry, you have no more skips! Get more skips by sharing about Pongs at the bottom!');
     	} else {
-	    	var updated_money = Number(curr[1]) - 1;
-	    	curr[1] = updated_money.toString();
-	    	var new_curr = ' ' + curr[1] + ' Skips';
-	    	$('#money').text(new_curr);
-	    	var uuid = $('#uuid').text();
-		    socket.emit('update currency', uuid, curr[1]);
-		}
-	}
+    		var updated_money = Number(curr[1]) - 1;
+    		curr[1] = updated_money.toString();
+    		var new_curr = ' ' + curr[1] + ' Skips';
+    		$('#money').text(new_curr);
+    		var uuid = $('#uuid').text();
+    		socket.emit('update currency', uuid, curr[1]);
+    	}
+    }
 
-	Date.prototype.addDays = function(days) {
-	    var dat = new Date(this.valueOf())
-	    dat.setDate(dat.getDate() + days);
-	    return dat;
-	}
+    Date.prototype.addDays = function(days) {
+    	var dat = new Date(this.valueOf())
+    	dat.setDate(dat.getDate() + days);
+    	return dat;
+    }
 
-	var now = new Date();
-	var curr_year = now.getFullYear();
-	var curr_month = now.getMonth();
-	var curr_day = now.getDate();
-	var time1 = new Date(curr_year, curr_month, curr_day, 10);
-	var time2 = new Date(curr_year, curr_month, curr_day, 16);
-	var time3 = new Date(curr_year, curr_month, curr_day, 22);
-	var diff1 = time1 - now;
-	var diff2 = time2 - now;
-	var diff3 = time3 - now;
-	var match_times = [diff1, diff2, diff3];
-	var diff;
-	for (var i=0; i<match_times.length; i++) {
-		if (match_times[i] > 0) {
-			diff = match_times[i];
-			break;
-		}
-	}
-	if (diff == null) {
-		var special = new Date(curr_year, curr_month, curr_day, 10).addDays(1);
-		diff = special - now;
-	}
-	var clock = $('.clock').FlipClock(diff/1000, {
-		autostart: true,
-		countdown: true
-	});
-</script>
-</html>
+    var now = new Date();
+    var curr_year = now.getFullYear();
+    var curr_month = now.getMonth();
+    var curr_day = now.getDate();
+    var time1 = new Date(curr_year, curr_month, curr_day, 10);
+    var time2 = new Date(curr_year, curr_month, curr_day, 16);
+    var time3 = new Date(curr_year, curr_month, curr_day, 22);
+    var diff1 = time1 - now;
+    var diff2 = time2 - now;
+    var diff3 = time3 - now;
+    var match_times = [diff1, diff2, diff3];
+    var diff;
+    for (var i=0; i<match_times.length; i++) {
+    	if (match_times[i] > 0) {
+    		diff = match_times[i];
+    		break;
+    	}
+    }
+    if (diff == null) {
+    	var special = new Date(curr_year, curr_month, curr_day, 10).addDays(1);
+    	diff = special - now;
+    }
+    var clock = $('.clock').FlipClock(diff/1000, {
+    	autostart: true,
+    	countdown: true
+    });
+    </script>
+    </html>
