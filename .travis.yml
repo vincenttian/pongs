@@ -5,8 +5,8 @@ node_js:
 - 0.8
 - 0.1
 
-# services:
-#   - mongodb
+services:
+  - mongodb
 
 notifications:
   email:
